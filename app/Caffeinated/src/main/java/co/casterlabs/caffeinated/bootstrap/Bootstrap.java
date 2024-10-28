@@ -293,6 +293,10 @@ public class Bootstrap implements Runnable {
         saucer.webview().setListener(new SaucerWebviewListener() {
             @Override
             public void onTitle(String newTitle) {
+                if (newTitle.contains("app://") || newTitle.contains("/$caffeinated-sdk-root$")) {
+                    newTitle = "Casterlabs-Caffeinated";
+                }
+
                 saucer.window().setTitle(newTitle);
             }
         });
