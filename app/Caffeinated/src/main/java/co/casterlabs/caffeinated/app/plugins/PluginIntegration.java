@@ -2,10 +2,11 @@ package co.casterlabs.caffeinated.app.plugins;
 
 import java.awt.Desktop;
 import java.io.File;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import java.util.UUID;
 import java.util.concurrent.ThreadLocalRandom;
 import java.util.stream.Collectors;
@@ -52,8 +53,8 @@ public class PluginIntegration {
     private PluginsHandler plugins = new PluginsHandler();
     private Cache<WidgetSettingsDetails> preferenceData;
 
-    @JavascriptValue(allowSet = false, watchForMutate = true, value = "contexts")
-    private List<PluginContext> contexts = new ArrayList<>();
+    @JavascriptValue(allowSet = false, watchForMutate = true)
+    private Set<PluginContext> contexts = new HashSet<>();
 
     // Pointers to forward values from PluginsHandler.
     @JavascriptValue(allowSet = false, watchForMutate = true)

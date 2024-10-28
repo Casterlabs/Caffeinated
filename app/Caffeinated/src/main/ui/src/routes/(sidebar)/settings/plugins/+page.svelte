@@ -26,7 +26,10 @@
 </script>
 
 <ul class="space-y-2">
-	{#each $contexts || [] as context}
+	{#each ($contexts || []).sort((c1, c2) => {
+		if (c1.file == c2.file) return 0;
+		return c2.file ? -1 : 1;
+	}) as context}
 		<!-- Hide the internal plugins IF they don't have developer mode enabled. -->
 		{#if context.file || $preferences?.enableStupidlyUnsafeSettings}
 			<li>
