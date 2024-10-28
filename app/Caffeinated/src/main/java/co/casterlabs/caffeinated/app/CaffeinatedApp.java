@@ -19,6 +19,12 @@ import java.util.function.Consumer;
 
 import org.jetbrains.annotations.Nullable;
 
+import app.saucer.Saucer;
+import app.saucer.bridge.JavascriptFunction;
+import app.saucer.bridge.JavascriptGetter;
+import app.saucer.bridge.JavascriptObject;
+import app.saucer.bridge.JavascriptSetter;
+import app.saucer.bridge.JavascriptValue;
 import co.casterlabs.caffeinated.app.api.AppApi;
 import co.casterlabs.caffeinated.app.auth.AppAuth;
 import co.casterlabs.caffeinated.app.auth.AuthPreferences;
@@ -55,12 +61,6 @@ import co.casterlabs.rakurai.json.TypeToken;
 import co.casterlabs.rakurai.json.element.JsonArray;
 import co.casterlabs.rakurai.json.element.JsonElement;
 import co.casterlabs.rakurai.json.element.JsonObject;
-import co.casterlabs.saucer.Saucer;
-import co.casterlabs.saucer.bridge.JavascriptFunction;
-import co.casterlabs.saucer.bridge.JavascriptGetter;
-import co.casterlabs.saucer.bridge.JavascriptObject;
-import co.casterlabs.saucer.bridge.JavascriptSetter;
-import co.casterlabs.saucer.bridge.JavascriptValue;
 import co.casterlabs.swetrix.Swetrix;
 import lombok.AccessLevel;
 import lombok.Getter;

@@ -20,12 +20,12 @@ import javax.imageio.ImageIO;
 import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
 
+import app.saucer.utils.SaucerApp;
 import co.casterlabs.caffeinated.app.CaffeinatedApp;
 import co.casterlabs.caffeinated.app.NotificationType;
 import co.casterlabs.caffeinated.app.ui.AppUI;
 import co.casterlabs.commons.platform.OSDistribution;
 import co.casterlabs.commons.platform.Platform;
-import co.casterlabs.saucer.utils.SaucerApp;
 import lombok.NonNull;
 import lombok.SneakyThrows;
 

@@ -1,7 +1,7 @@
 package co.casterlabs.caffeinated.app.ui;
 
+import app.saucer.bridge.JavascriptObject;
 import co.casterlabs.rakurai.json.annotating.JsonClass;
-import co.casterlabs.saucer.bridge.JavascriptObject;
 import lombok.Data;
 
 @Data

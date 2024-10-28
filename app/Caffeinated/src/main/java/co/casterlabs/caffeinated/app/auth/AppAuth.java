@@ -8,6 +8,9 @@ import java.util.Objects;
 
 import org.jetbrains.annotations.Nullable;
 
+import app.saucer.bridge.JavascriptFunction;
+import app.saucer.bridge.JavascriptObject;
+import app.saucer.bridge.JavascriptValue;
 import co.casterlabs.caffeinated.app.CaffeinatedApp;
 import co.casterlabs.caffeinated.app.NotificationType;
 import co.casterlabs.caffeinated.util.WebUtil;
@@ -15,9 +18,6 @@ import co.casterlabs.koi.api.types.stream.KoiStreamLanguage;
 import co.casterlabs.koi.api.types.user.UserPlatform;
 import co.casterlabs.rakurai.json.Rson;
 import co.casterlabs.rakurai.json.element.JsonObject;
-import co.casterlabs.saucer.bridge.JavascriptFunction;
-import co.casterlabs.saucer.bridge.JavascriptObject;
-import co.casterlabs.saucer.bridge.JavascriptValue;
 import lombok.Getter;
 import lombok.NonNull;
 import okhttp3.Request;

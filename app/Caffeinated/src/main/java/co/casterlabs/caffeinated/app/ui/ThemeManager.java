@@ -2,12 +2,12 @@ package co.casterlabs.caffeinated.app.ui;
 
 import com.jthemedetecor.OsThemeDetector;
 
+import app.saucer.bridge.JavascriptFunction;
+import app.saucer.bridge.JavascriptObject;
+import app.saucer.bridge.JavascriptValue;
 import co.casterlabs.caffeinated.app.CaffeinatedApp;
 import co.casterlabs.caffeinated.app.PreferenceFile;
 import co.casterlabs.caffeinated.app.ui.ThemePreferences.Appearance;
-import co.casterlabs.saucer.bridge.JavascriptFunction;
-import co.casterlabs.saucer.bridge.JavascriptObject;
-import co.casterlabs.saucer.bridge.JavascriptValue;
 import lombok.Getter;
 import lombok.NonNull;
 

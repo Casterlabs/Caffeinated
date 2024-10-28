@@ -2,12 +2,12 @@ package co.casterlabs.caffeinated.app;
 
 import org.jetbrains.annotations.Nullable;
 
+import app.saucer.bridge.JavascriptFunction;
+import app.saucer.bridge.JavascriptObject;
 import co.casterlabs.caffeinated.pluginsdk.Emojis;
 import co.casterlabs.commons.async.AsyncTask;
 import co.casterlabs.emoji.data.EmojiIndex;
 import co.casterlabs.emoji.generator.EmojiIndexGenerator;
-import co.casterlabs.saucer.bridge.JavascriptFunction;
-import co.casterlabs.saucer.bridge.JavascriptObject;
 import lombok.Setter;
 
 @JavascriptObject

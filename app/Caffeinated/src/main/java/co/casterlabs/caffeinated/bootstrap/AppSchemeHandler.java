@@ -2,12 +2,12 @@ package co.casterlabs.caffeinated.bootstrap;
 
 import java.net.URI;
 
+import app.saucer.scheme.SaucerSchemeHandler;
+import app.saucer.scheme.SaucerSchemeRequest;
+import app.saucer.scheme.SaucerSchemeResponse;
+import app.saucer.scheme.SaucerSchemeResponse.SaucerRequestError;
+import app.saucer.utils.SaucerStash;
 import co.casterlabs.caffeinated.util.MimeTypes;
-import co.casterlabs.saucer.scheme.SaucerSchemeHandler;
-import co.casterlabs.saucer.scheme.SaucerSchemeRequest;
-import co.casterlabs.saucer.scheme.SaucerSchemeResponse;
-import co.casterlabs.saucer.scheme.SaucerSchemeResponse.SaucerRequestError;
-import co.casterlabs.saucer.utils.SaucerStash;
 import lombok.SneakyThrows;
 import xyz.e3ndr.fastloggingframework.logging.FastLogger;
 import xyz.e3ndr.fastloggingframework.logging.LogLevel;

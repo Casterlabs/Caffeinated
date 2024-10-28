@@ -11,6 +11,9 @@ import java.util.concurrent.ConcurrentHashMap;
 
 import org.jetbrains.annotations.Nullable;
 
+import app.saucer.bridge.JavascriptFunction;
+import app.saucer.bridge.JavascriptObject;
+import app.saucer.bridge.JavascriptValue;
 import co.casterlabs.caffeinated.app.CaffeinatedApp;
 import co.casterlabs.caffeinated.app.RealtimeApiListener;
 import co.casterlabs.caffeinated.app.auth.AuthInstance;
@@ -39,9 +42,6 @@ import co.casterlabs.koi.api.types.user.UserPlatform;
 import co.casterlabs.rakurai.json.Rson;
 import co.casterlabs.rakurai.json.element.JsonElement;
 import co.casterlabs.rakurai.json.element.JsonObject;
-import co.casterlabs.saucer.bridge.JavascriptFunction;
-import co.casterlabs.saucer.bridge.JavascriptObject;
-import co.casterlabs.saucer.bridge.JavascriptValue;
 import lombok.NonNull;
 import xyz.e3ndr.fastloggingframework.logging.FastLogger;
 import xyz.e3ndr.fastloggingframework.logging.LogLevel;

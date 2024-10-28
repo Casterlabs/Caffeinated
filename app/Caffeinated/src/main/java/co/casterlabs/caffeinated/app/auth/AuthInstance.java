@@ -151,7 +151,7 @@ public class AuthInstance implements KoiLifeCycleHandler, Closeable {
 
     @KoiEventHandler
     public void onUserUpdate(UserUpdateEvent e) {
-        boolean isAuthConfirmation = this.userData == null;
+//        boolean isAuthConfirmation = this.userData == null;
 
         this.userData = e.streamer;
 

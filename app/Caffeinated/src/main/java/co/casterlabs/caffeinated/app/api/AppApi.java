@@ -1,6 +1,6 @@
 package co.casterlabs.caffeinated.app.api;
 
-import co.casterlabs.saucer.bridge.JavascriptObject;
+import app.saucer.bridge.JavascriptObject;
 
 @JavascriptObject
 public class AppApi {

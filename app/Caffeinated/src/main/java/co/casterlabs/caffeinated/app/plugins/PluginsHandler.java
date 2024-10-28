@@ -13,6 +13,7 @@ import java.util.function.Function;
 
 import org.jetbrains.annotations.Nullable;
 
+import app.saucer.bridge.JavascriptObject;
 import co.casterlabs.caffeinated.app.CaffeinatedApp;
 import co.casterlabs.caffeinated.pluginsdk.CaffeinatedPlugin;
 import co.casterlabs.caffeinated.pluginsdk.CaffeinatedPlugins;
@@ -24,7 +25,6 @@ import co.casterlabs.caffeinated.util.collections.IdentityCollection;
 import co.casterlabs.commons.async.AsyncTask;
 import co.casterlabs.commons.functional.tuples.Triple;
 import co.casterlabs.rakurai.json.element.JsonObject;
-import co.casterlabs.saucer.bridge.JavascriptObject;
 import co.casterlabs.yen.CacheIterator;
 import lombok.NonNull;
 import lombok.SneakyThrows;

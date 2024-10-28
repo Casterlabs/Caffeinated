@@ -12,6 +12,10 @@ import java.util.stream.Collectors;
 
 import org.jetbrains.annotations.Nullable;
 
+import app.saucer.bridge.JavascriptFunction;
+import app.saucer.bridge.JavascriptGetter;
+import app.saucer.bridge.JavascriptObject;
+import app.saucer.bridge.JavascriptValue;
 import co.casterlabs.caffeinated.app.CaffeinatedApp;
 import co.casterlabs.caffeinated.app.plugins.PluginContext.ContextType;
 import co.casterlabs.caffeinated.app.thirdparty.ThirdPartyServices;
@@ -31,10 +35,6 @@ import co.casterlabs.koi.api.types.KoiEventType;
 import co.casterlabs.koi.api.types.events.UserUpdateEvent;
 import co.casterlabs.rakurai.json.element.JsonElement;
 import co.casterlabs.rakurai.json.element.JsonObject;
-import co.casterlabs.saucer.bridge.JavascriptFunction;
-import co.casterlabs.saucer.bridge.JavascriptGetter;
-import co.casterlabs.saucer.bridge.JavascriptObject;
-import co.casterlabs.saucer.bridge.JavascriptValue;
 import co.casterlabs.yen.Cache;
 import co.casterlabs.yen.CacheIterator;
 import co.casterlabs.yen.impl.SQLBackedCache;
