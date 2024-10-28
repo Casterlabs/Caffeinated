@@ -21,7 +21,6 @@ import co.casterlabs.caffeinated.pluginsdk.widgets.Widget;
 import co.casterlabs.caffeinated.pluginsdk.widgets.Widget.WidgetHandle;
 import co.casterlabs.caffeinated.pluginsdk.widgets.WidgetDetails;
 import co.casterlabs.caffeinated.pluginsdk.widgets.WidgetType;
-import co.casterlabs.caffeinated.util.collections.IdentityCollection;
 import co.casterlabs.commons.async.AsyncTask;
 import co.casterlabs.commons.functional.tuples.Triple;
 import co.casterlabs.rakurai.json.element.JsonObject;
@@ -36,13 +35,10 @@ public class PluginsHandler implements CaffeinatedPlugins {
     private static final FastLogger logger = new FastLogger();
 
     private Map<String, Triple<CaffeinatedPlugin, Function<WidgetDetails, Widget>, WidgetDetails>> widgetFactories = new HashMap<>();
-    private Map<String, CaffeinatedPlugin> plugins = new HashMap<>();
-    private Map<String, WidgetHandle> widgetHandles = new HashMap<>();
 
-    // Pointers.
-    final Collection<CaffeinatedPlugin> $loadedPlugins = new IdentityCollection<>(this.plugins.values());
-    final Collection<WidgetHandle> $widgetHandles = new IdentityCollection<>(this.widgetHandles.values());
-    final Collection<WidgetDetails> $creatableWidgets = new LinkedList<>();
+    final Map<String, CaffeinatedPlugin> plugins = new HashMap<>();
+    final Map<String, WidgetHandle> widgetHandles = new HashMap<>();
+    final Collection<WidgetDetails> creatableWidgets = new LinkedList<>();
 
     public List<CaffeinatedPlugin> getPlugins() {
         return new ArrayList<>(this.plugins.values());
@@ -187,7 +183,7 @@ public class PluginsHandler implements CaffeinatedPlugins {
         pluginWidgetNamespacesField.add(widgetDetails.getNamespace());
 
         this.widgetFactories.put(widgetDetails.getNamespace(), new Triple<>(plugin, widgetSupplier, widgetDetails));
-        this.$creatableWidgets.add(widgetDetails);
+        this.creatableWidgets.add(widgetDetails);
 
         // Automatically create the docks and applets when registered.
         if ((widgetDetails.getType() == WidgetType.DOCK) || (widgetDetails.getType() == WidgetType.APPLET) || (widgetDetails.getType() == WidgetType.SETTINGS_APPLET)) {
@@ -316,7 +312,7 @@ public class PluginsHandler implements CaffeinatedPlugins {
 
         for (String widgetNamespace : pluginWidgetNamespacesField) {
             Triple<CaffeinatedPlugin, Function<WidgetDetails, Widget>, WidgetDetails> removed = this.widgetFactories.remove(widgetNamespace);
-            this.$creatableWidgets.remove(removed.c());
+            this.creatableWidgets.remove(removed.c());
         }
 
         for (Widget widget : new ArrayList<>(pluginWidgetsField)) {

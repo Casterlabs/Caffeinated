@@ -26,7 +26,6 @@ import co.casterlabs.caffeinated.pluginsdk.koi.TestEvents;
 import co.casterlabs.caffeinated.pluginsdk.widgets.Widget.WidgetHandle;
 import co.casterlabs.caffeinated.pluginsdk.widgets.WidgetDetails;
 import co.casterlabs.caffeinated.pluginsdk.widgets.settings.WidgetSettingsButton;
-import co.casterlabs.caffeinated.util.collections.IdentityCollection;
 import co.casterlabs.caffeinated.util.network.InterfaceUtil;
 import co.casterlabs.commons.async.AsyncTask;
 import co.casterlabs.emoji.generator.WebUtil;
@@ -51,19 +50,18 @@ public class PluginIntegration {
     private static final String addressesStringList = String.join(",", InterfaceUtil.getLocalIpAddresses());
 
     private PluginsHandler plugins = new PluginsHandler();
-    private List<PluginContext> contexts = new ArrayList<>();
     private Cache<WidgetSettingsDetails> preferenceData;
 
-    // Pointers to forward values from PluginsHandler.
-
-    @JavascriptValue(allowSet = false, watchForMutate = true)
-    private final Collection<CaffeinatedPlugin> loadedPlugins = this.plugins.$loadedPlugins;
-    @JavascriptValue(allowSet = false, watchForMutate = true)
-    private final Collection<WidgetDetails> creatableWidgets = this.plugins.$creatableWidgets;
-    @JavascriptValue(allowSet = false, watchForMutate = true)
-    private final Collection<WidgetHandle> widgets = this.plugins.$widgetHandles;
     @JavascriptValue(allowSet = false, watchForMutate = true, value = "contexts")
-    private final Collection<PluginContext> contexts_f = new IdentityCollection<>(this.contexts);
+    private List<PluginContext> contexts = new ArrayList<>();
+
+    // Pointers to forward values from PluginsHandler.
+    @JavascriptValue(allowSet = false, watchForMutate = true)
+    private final Collection<CaffeinatedPlugin> loadedPlugins = this.plugins.plugins.values();
+    @JavascriptValue(allowSet = false, watchForMutate = true)
+    private final Collection<WidgetDetails> creatableWidgets = this.plugins.creatableWidgets;
+    @JavascriptValue(allowSet = false, watchForMutate = true)
+    private final Collection<WidgetHandle> widgets = this.plugins.widgetHandles.values();
 
     public PluginIntegration() {
         pluginsDir.mkdir();
