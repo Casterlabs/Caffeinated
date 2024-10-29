@@ -454,7 +454,7 @@
   }
   conn3.on("close", () => {
     setTimeout(() => {
-      history.back();
+      location.href = `https://widgets.casterlabs.co/caffeinated/loader.html${location.search}`;
     }, 2500);
   });
   conn3.on("init", () => {
