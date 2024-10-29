@@ -252,10 +252,24 @@ public class Bootstrap implements Runnable {
 
         SaucerApp.dispatch(() -> {
             Saucer.registerCustomScheme("app");
-            saucer = Saucer.create(
-                SaucerPreferences.create()
-                    .hardwareAcceleration(true)
-            );
+
+            SaucerPreferences preferences = SaucerPreferences.create()
+                .hardwareAcceleration(true);
+
+            switch (Saucer.getBackend()) {
+                case "WebKitGtk":
+                    break;
+
+                case "WebKit":
+                    break;
+
+                case "WebView2":
+                    preferences.addBrowserFlag("-msWebView2SimulateMemoryPressureWhenInactive=true");
+                    break;
+            }
+
+            saucer = Saucer.create(preferences);
+
             saucer.window().setTitle("Casterlabs-Caffeinated");
             saucer.bridge().defineObject("Caffeinated", app);
 
