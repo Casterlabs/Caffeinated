@@ -287,10 +287,6 @@ public class Bootstrap implements Runnable {
             ReflectionLib.setValue(CaffeinatedApp.getInstance(), "saucer", saucer);
         } catch (NoSuchFieldException | SecurityException | IllegalArgumentException | IllegalAccessException ignored) {}
 
-//        try {
-//            ReflectionLib.setValue(CaffeinatedApp.getInstance().getUI(), "uiVisible", true);
-//        } catch (NoSuchFieldException | SecurityException | IllegalArgumentException | IllegalAccessException ignored) {}
-//
         TrayHandler.updateShowCheckbox(true);
 
         saucer.messages().onMessage((arr) -> {
