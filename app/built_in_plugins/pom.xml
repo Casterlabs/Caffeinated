@@ -1,10 +1,10 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
-	<artifactId>BuiltInPlugins</artifactId>
+	<artifactId>built_in_plugins</artifactId>
 
 	<parent>
-		<groupId>co.casterlabs</groupId>
-		<artifactId>Casterlabs-Caffeinated</artifactId>
+		<groupId>co.casterlabs.caffeinated</groupId>
+		<artifactId>caffeinated</artifactId>
 		<version>1.2</version>
 		<relativePath>../pom.xml</relativePath>
 	</parent>
@@ -83,8 +83,8 @@
 
 	<dependencies>
 		<dependency>
-			<groupId>co.casterlabs</groupId>
-			<artifactId>PluginSDK</artifactId>
+			<groupId>co.casterlabs.caffeinated</groupId>
+			<artifactId>plugin_sdk</artifactId>
 			<version>${project.parent.version}</version>
 			<scope>compile</scope>
 		</dependency>
