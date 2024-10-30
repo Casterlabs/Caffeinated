@@ -1,52 +1,80 @@
 #!/bin/bash
 
-set -euxo pipefail
+set -e -o pipefail
 
-echo "Build channel: ${DEPLOY_CHANNEL:-default}"
+APP_ID="co.casterlabs.caffeinated"
+APP_NAME="Casterlabs-Caffeinated"
+MAIN_CLASS="co.casterlabs.caffeinated.bootstrap.Bootstrap"
+VM_OPTIONS="-Xms1M -XX:+UseCompressedOops -XX:+UseSerialGC -XX:MaxHeapFreeRatio=1 -XX:MinHeapFreeRatio=1"
+SAUCER4J_VERSION="1.0.0-pre1"
 
-if [[ $@ != *"nocompile"* ]]; then
+if [[ $@ == *"compile"* ]]; then
+    echo "------------ Compiling app ------------"
+
     cd app
-    bash ./mvnw clean package
+    ./mvnw clean package
     cd ..
+
+    echo "------------ Finishing compiling app ---------"
 fi
 
-# Reset/clear the dist folder
-rm -rf dist/*
-mkdir -p -p dist
+if [[ $@ == *"dist-windows"* ]]; then
+    echo "------------ Bundling for Windows ------------"
 
-KAIMEN_VERSION="4689d69"
-VM_OPTIONS="-vm Xms1M -vm XX:+UseCompressedOops -vm XX:+UseSerialGC -vm XX:MaxHeapFreeRatio=1 -vm XX:MinHeapFreeRatio=1"
+    java -jar bundler.jar bundle \
+        --arch x86_64 --os windows \
+        --id $APP_ID --name $APP_NAME --icon icon.png \
+        --java 11 --arg="$VM_OPTIONS" --main $MAIN_CLASS \
+        --file app/core/WMC-JsonConsoleWrapper.exe --dependency "app/core/target/Caffeinated.jar" \
+        --dependency "https://jitpack.io|com.github.saucer.saucer4j:webview2:$SAUCER4J_VERSION:.jar"
 
-if [[ $@ != *"nopackage"* ]]; then
-    cp app/Caffeinated/target/classes/commit.txt dist
-    mkdir dist/artifacts
-
-    echo ""
-    echo "Completing packaging of application."
-    echo ""
-
-    java -jar ProjectBuilder.jar $VM_OPTIONS -os MACOS -arch X86 -archWord 64 -wi WEBKIT -v 1.2 -n "Casterlabs-Caffeinated" -jv JAVA11 -kv $KAIMEN_VERSION -cp app/Caffeinated/target/Caffeinated.jar -i icon.icns -id co.casterlabs.caffeinated
-    cd dist/macOS-x86_64
-    zip -r ../artifacts/macOS-amd64.zip *
-    rm -rf ./jre
-    zip -r ../artifacts/macOS-amd64-nojre.zip *
-    cd -
-    echo ""
-
-    java -jar ProjectBuilder.jar $VM_OPTIONS -os WINDOWS_NT -arch X86 -archWord 64 -wi CHROMIUM_EMBEDDED_FRAMEWORK -v 1.2 -n "Casterlabs-Caffeinated" -jv JAVA11 -kv $KAIMEN_VERSION -res app/Caffeinated/WMC-JsonConsoleWrapper.exe -cp app/Caffeinated/target/Caffeinated.jar -i icon.ico
-    cd dist/Windows-x86_64
-    zip -r ../artifacts/Windows-amd64.zip *
-    rm -rf ./jre
-    zip -r ../artifacts/Windows-amd64-nojre.zip *
-    cd -
-    echo ""
-
-    java -jar ProjectBuilder.jar $VM_OPTIONS -os LINUX -arch X86 -archWord 64 -wi CHROMIUM_EMBEDDED_FRAMEWORK -v 1.2 -n "Casterlabs-Caffeinated" -jv JAVA11 -kv $KAIMEN_VERSION -cp app/Caffeinated/target/Caffeinated.jar
-    cd dist/Linux-x86_64
-    zip -r ../artifacts/Linux-amd64.zip *
-    rm -rf ./jre
-    zip -r ../artifacts/Linux-amd64-nojre.zip *
-    cd -
-    echo ""
-
+    echo "------------ Finished bundling for Windows ------------"
 fi
+
+if [[ $@ == *"dist-macos"* ]]; then
+    echo "------------ Bundling for macOS ------------"
+
+    java -jar bundler.jar bundle \
+        --arch aarch64 --os macos \
+        --id $APP_ID --name $APP_NAME --icon icon.png \
+        --java 11 --arg="-XstartOnFirstThread $VM_OPTIONS" --main $MAIN_CLASS \
+        --dependency "app/core/target/Caffeinated.jar" \
+        --dependency "https://jitpack.io|com.github.saucer.saucer4j:webkit:$SAUCER4J_VERSION:.jar"
+
+    java -jar bundler.jar bundle \
+        --arch x86_64 --os macos \
+        --id $APP_ID --name $APP_NAME --icon icon.png \
+        --java 11 --arg="-XstartOnFirstThread $VM_OPTIONS" --main $MAIN_CLASS \
+        --dependency "app/core/target/Caffeinated.jar" \
+        --dependency "https://jitpack.io|com.github.saucer.saucer4j:webkit:$SAUCER4J_VERSION:.jar"
+
+    echo "------------ Finished bundling for macOS ------------"
+fi
+
+if [[ $@ == *"dist-linux"* ]]; then
+    echo "------------ Bundling for Linux ------------"
+
+    java -jar bundler.jar bundle \
+        --arch aarch64 --os gnulinux \
+        --id $APP_ID --name $APP_NAME --icon icon.png \
+        --java 11 --arg="$VM_OPTIONS" --main $MAIN_CLASS \
+        --dependency "app/core/target/Caffeinated.jar" \
+        --dependency "https://jitpack.io|com.github.saucer.saucer4j:webkitgtk:$SAUCER4J_VERSION:.jar"
+
+    java -jar bundler.jar bundle \
+        --arch arm --os gnulinux \
+        --id $APP_ID --name $APP_NAME --icon icon.png \
+        --java 11 --arg="$VM_OPTIONS" --main $MAIN_CLASS \
+        --dependency "app/core/target/Caffeinated.jar" \
+        --dependency "https://jitpack.io|com.github.saucer.saucer4j:webkitgtk:$SAUCER4J_VERSION:.jar"
+
+    java -jar bundler.jar bundle \
+        --arch x86_64 --os gnulinux \
+        --id $APP_ID --name $APP_NAME --icon icon.png \
+        --java 11 --arg="$VM_OPTIONS" --main $MAIN_CLASS \
+        --dependency "app/core/target/Caffeinated.jar" \
+        --dependency "https://jitpack.io|com.github.saucer.saucer4j:webkitgtk:$SAUCER4J_VERSION:.jar"
+
+    echo "------------ Finished bundling for Linux ------------"
+fi
+

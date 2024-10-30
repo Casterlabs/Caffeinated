@@ -12,7 +12,7 @@
 	</parent>
 
 	<properties>
-		<saucer4j.version>c35e869</saucer4j.version>
+		<saucer4j.version>1.0.0-pre1</saucer4j.version>
 	</properties>
 
 	<build>
@@ -116,23 +116,11 @@
 			<version>${saucer4j.version}</version>
 			<scope>compile</scope>
 		</dependency>
-		<dependency>
+		<dependency> <!-- Dev Dependency. See build.sh for the backends we actually use. -->
 			<groupId>com.github.saucer.saucer4j</groupId>
-			<artifactId>webview2</artifactId>
+			<artifactId>_all</artifactId>
 			<version>${saucer4j.version}</version>
-			<scope>compile</scope>
-		</dependency>
-		<dependency>
-			<groupId>com.github.saucer.saucer4j</groupId>
-			<artifactId>webkitgtk</artifactId>
-			<version>${saucer4j.version}</version>
-			<scope>compile</scope>
-		</dependency>
-		<dependency>
-			<groupId>com.github.saucer.saucer4j</groupId>
-			<artifactId>webkit</artifactId>
-			<version>${saucer4j.version}</version>
-			<scope>compile</scope>
+			<scope>provided</scope>
 		</dependency>
 
 		<!-- JNA -->
