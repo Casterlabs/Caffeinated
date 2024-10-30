@@ -6,7 +6,7 @@ APP_ID="co.casterlabs.caffeinated"
 APP_NAME="Casterlabs-Caffeinated"
 MAIN_CLASS="co.casterlabs.caffeinated.bootstrap.Bootstrap"
 VM_OPTIONS="-Xms1M -XX:+UseCompressedOops -XX:+UseSerialGC -XX:MaxHeapFreeRatio=1 -XX:MinHeapFreeRatio=1"
-SAUCER4J_VERSION="1.0.0-pre1"
+SAUCER4J_VERSION="1.0.0-pre3"
 
 if [[ $@ == *"compile"* ]]; then
     echo "------------ Compiling app ------------"
