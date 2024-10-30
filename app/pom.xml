@@ -6,6 +6,7 @@
 	<packaging>pom</packaging>
 
 	<modules>
+		<module>UI</module>
 		<module>Caffeinated</module>
 		<module>Util</module>
 		<module>PluginSDK</module>
