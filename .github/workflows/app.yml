@@ -28,7 +28,7 @@ jobs:
         run: bash build.sh compile
 
       - name: 🆙 Upload the app jar
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: Caffeinated.jar
           path: app/core/target/Caffeinated.jar
@@ -57,7 +57,7 @@ jobs:
         run: bash build.sh dist-windows
 
       - name: 🆙 Upload the Windows artifact to GitHub (x86_64)
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: Casterlabs-Caffeinated-windows-x86_64.zip
           path: dist/artifacts/Casterlabs-Caffeinated-windows-x86_64.zip
@@ -90,13 +90,13 @@ jobs:
   #       run: bash build.sh dist-macos
 
   #     - name: 🆙 Upload the macOS artifact to GitHub (aarch64)
-  #       uses: actions/upload-artifact@v3
+  #       uses: actions/upload-artifact@v4
   #       with:
   #         name: Casterlabs-Caffeinated-macos-aarch64.tar.gz
   #         path: dist/artifacts/Casterlabs-Caffeinated-macos-aarch64.tar.gz
 
   #     - name: 🆙 Upload the macOS artifact to GitHub (x86_64)
-  #       uses: actions/upload-artifact@v3
+  #       uses: actions/upload-artifact@v4
   #       with:
   #         name: Casterlabs-Caffeinated-macos-x86_64.tar.gz
   #         path: dist/artifacts/Casterlabs-Caffeinated-macos-x86_64.tar.gz
@@ -129,19 +129,19 @@ jobs:
   #       run: bash build.sh dist-linux
 
   #     - name: 🆙 Upload the Linux artifact to GitHub (aarch64)
-  #       uses: actions/upload-artifact@v3
+  #       uses: actions/upload-artifact@v4
   #       with:
   #         name: Casterlabs-Caffeinated-gnulinux-aarch64.tar.gz
   #         path: dist/artifacts/Casterlabs-Caffeinated-gnulinux-aarch64.tar.gz
 
   #     - name: 🆙 Upload the Linux artifact to GitHub (arm)
-  #       uses: actions/upload-artifact@v3
+  #       uses: actions/upload-artifact@v4
   #       with:
   #         name: Casterlabs-Caffeinated-gnulinux-arm.tar.gz
   #         path: dist/artifacts/Casterlabs-Caffeinated-gnulinux-arm.tar.gz
 
   #     - name: 🆙 Upload the Linux artifact to GitHub (x86_64)
-  #       uses: actions/upload-artifact@v3
+  #       uses: actions/upload-artifact@v4
   #       with:
   #         name: Casterlabs-Caffeinated-gnulinux-x86_64.tar.gz
   #         path: dist/artifacts/Casterlabs-Caffeinated-gnulinux-x86_64.tar.gz
