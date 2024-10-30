@@ -7,10 +7,10 @@ on:
     types: [created]
 
 jobs:
-  build_windows:
-    runs-on: windows-latest
+  build_app:
+    runs-on: ubuntu-latest
     steps:
-      - name: 📩 Set up JDK 11
+      - name: 📩 Grab the code
         uses: actions/checkout@v3
 
       - name: 🏗️ Set up JDK 11
@@ -21,15 +21,37 @@ jobs:
           cache: maven
 
       - name: 🏗️ Set deploy channel env
-        run: echo "DEPLOY_CHANNEL=${{ (startsWith(github.ref, 'refs/tags/1.2-') && ((github.event.release.prerelease && 'beta') || 'stable')) || 'dev' }}" >> $GITHUB_ENV
+        run: echo "DEPLOY_CHANNEL=${{ (startsWith(github.ref, 'refs/tags/1.2-') && ((github.event.release.prerelease && 'beta') || 'stable')) || 'dev' }}" >> $GITHUB_ENV && echo $DEPLOY_CHANNEL
         if: startsWith(github.ref, 'refs/tags/1.2-') 
-
-      - name: 🏗️ Compile the deploy helper
-        run: cd deploy-helper && bash ./mvnw clean package
-        if: startsWith(github.ref, 'refs/tags/1.2-')
 
       - name: 🔨 Compile the app
         run: bash build.sh compile
+
+      - name: 🆙 Upload the app jar
+        uses: actions/upload-artifact@v3
+        with:
+          name: Caffeinated.jar
+          path: app/core/target/Caffeinated.jar
+      
+  bundle_windows:
+    needs: [build_app]
+    runs-on: windows-latest
+    steps:
+      - name: 📩 Grab the code
+        uses: actions/checkout@v3
+
+      - name: 🏗️ Set up JDK 11
+        uses: actions/setup-java@v3
+        with:
+          java-version: 11
+          distribution: temurin
+          cache: maven
+
+      - name: 📩 Download the compiled app
+        uses: actions/download-artifact@v4
+        with:
+          name: Caffeinated.jar
+          path: app/core/target/Caffeinated.jar
 
       - name: 📦 Build the Windows artifact
         run: bash build.sh dist-windows
@@ -40,86 +62,86 @@ jobs:
           name: Casterlabs-Caffeinated-windows-x86_64.zip
           path: dist/artifacts/Casterlabs-Caffeinated-windows-x86_64.zip
       
-  build_macos:
-    runs-on: ubuntu-latest
-    steps:
-      - name: 📩 Set up JDK 11
-        uses: actions/checkout@v3
+  # bundle_macos:
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - name: 📩 Grab the code
+  #       uses: actions/checkout@v3
 
-      - name: 🏗️ Set up JDK 11
-        uses: actions/setup-java@v3
-        with:
-          java-version: 11
-          distribution: temurin
-          cache: maven
+  #     - name: 🏗️ Set up JDK 11
+  #       uses: actions/setup-java@v3
+  #       with:
+  #         java-version: 11
+  #         distribution: temurin
+  #         cache: maven
 
-      - name: 🏗️ Set deploy channel env
-        run: echo "DEPLOY_CHANNEL=${{ (startsWith(github.ref, 'refs/tags/1.2-') && ((github.event.release.prerelease && 'beta') || 'stable')) || 'dev' }}" >> $GITHUB_ENV
-        if: startsWith(github.ref, 'refs/tags/1.2-') 
+  #     - name: 🏗️ Set deploy channel env
+  #       run: echo "DEPLOY_CHANNEL=${{ (startsWith(github.ref, 'refs/tags/1.2-') && ((github.event.release.prerelease && 'beta') || 'stable')) || 'dev' }}" >> $GITHUB_ENV
+  #       if: startsWith(github.ref, 'refs/tags/1.2-') 
 
-      - name: 🏗️ Compile the deploy helper
-        run: cd deploy-helper && bash ./mvnw clean package
-        if: startsWith(github.ref, 'refs/tags/1.2-')
+  #     - name: 🏗️ Compile the deploy helper
+  #       run: cd deploy-helper && bash ./mvnw clean package
+  #       if: startsWith(github.ref, 'refs/tags/1.2-')
 
-      - name: 🔨 Compile the app
-        run: bash build.sh compile
+  #     - name: 🔨 Compile the app
+  #       run: bash build.sh compile
 
-      - name: 📦 Build the macOS artifact
-        run: bash build.sh dist-macos
+  #     - name: 📦 Build the macOS artifact
+  #       run: bash build.sh dist-macos
 
-      - name: 🆙 Upload the macOS artifact to GitHub (aarch64)
-        uses: actions/upload-artifact@v3
-        with:
-          name: Casterlabs-Caffeinated-macos-aarch64.tar.gz
-          path: dist/artifacts/Casterlabs-Caffeinated-macos-aarch64.tar.gz
+  #     - name: 🆙 Upload the macOS artifact to GitHub (aarch64)
+  #       uses: actions/upload-artifact@v3
+  #       with:
+  #         name: Casterlabs-Caffeinated-macos-aarch64.tar.gz
+  #         path: dist/artifacts/Casterlabs-Caffeinated-macos-aarch64.tar.gz
 
-      - name: 🆙 Upload the macOS artifact to GitHub (x86_64)
-        uses: actions/upload-artifact@v3
-        with:
-          name: Casterlabs-Caffeinated-macos-x86_64.tar.gz
-          path: dist/artifacts/Casterlabs-Caffeinated-macos-x86_64.tar.gz
+  #     - name: 🆙 Upload the macOS artifact to GitHub (x86_64)
+  #       uses: actions/upload-artifact@v3
+  #       with:
+  #         name: Casterlabs-Caffeinated-macos-x86_64.tar.gz
+  #         path: dist/artifacts/Casterlabs-Caffeinated-macos-x86_64.tar.gz
 
-  build_linux:
-    runs-on: ubuntu-latest
-    steps:
-      - name: 📩 Set up JDK 11
-        uses: actions/checkout@v3
+  # bundle_linux:
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - name: 📩 Grab the code
+  #       uses: actions/checkout@v3
 
-      - name: 🏗️ Set up JDK 11
-        uses: actions/setup-java@v3
-        with:
-          java-version: 11
-          distribution: temurin
-          cache: maven
+  #     - name: 🏗️ Set up JDK 11
+  #       uses: actions/setup-java@v3
+  #       with:
+  #         java-version: 11
+  #         distribution: temurin
+  #         cache: maven
 
-      - name: 🏗️ Set deploy channel env
-        run: echo "DEPLOY_CHANNEL=${{ (startsWith(github.ref, 'refs/tags/1.2-') && ((github.event.release.prerelease && 'beta') || 'stable')) || 'dev' }}" >> $GITHUB_ENV
-        if: startsWith(github.ref, 'refs/tags/1.2-') 
+  #     - name: 🏗️ Set deploy channel env
+  #       run: echo "DEPLOY_CHANNEL=${{ (startsWith(github.ref, 'refs/tags/1.2-') && ((github.event.release.prerelease && 'beta') || 'stable')) || 'dev' }}" >> $GITHUB_ENV
+  #       if: startsWith(github.ref, 'refs/tags/1.2-') 
 
-      - name: 🏗️ Compile the deploy helper
-        run: cd deploy-helper && bash ./mvnw clean package
-        if: startsWith(github.ref, 'refs/tags/1.2-')
+  #     - name: 🏗️ Compile the deploy helper
+  #       run: cd deploy-helper && bash ./mvnw clean package
+  #       if: startsWith(github.ref, 'refs/tags/1.2-')
 
-      - name: 🔨 Compile the app
-        run: bash build.sh compile
+  #     - name: 🔨 Compile the app
+  #       run: bash build.sh compile
 
-      - name: 📦 Build the Linux artifact
-        run: bash build.sh dist-linux
+  #     - name: 📦 Build the Linux artifact
+  #       run: bash build.sh dist-linux
 
-      - name: 🆙 Upload the Linux artifact to GitHub (aarch64)
-        uses: actions/upload-artifact@v3
-        with:
-          name: Casterlabs-Caffeinated-gnulinux-aarch64.tar.gz
-          path: dist/artifacts/Casterlabs-Caffeinated-gnulinux-aarch64.tar.gz
+  #     - name: 🆙 Upload the Linux artifact to GitHub (aarch64)
+  #       uses: actions/upload-artifact@v3
+  #       with:
+  #         name: Casterlabs-Caffeinated-gnulinux-aarch64.tar.gz
+  #         path: dist/artifacts/Casterlabs-Caffeinated-gnulinux-aarch64.tar.gz
 
-      - name: 🆙 Upload the Linux artifact to GitHub (arm)
-        uses: actions/upload-artifact@v3
-        with:
-          name: Casterlabs-Caffeinated-gnulinux-arm.tar.gz
-          path: dist/artifacts/Casterlabs-Caffeinated-gnulinux-arm.tar.gz
+  #     - name: 🆙 Upload the Linux artifact to GitHub (arm)
+  #       uses: actions/upload-artifact@v3
+  #       with:
+  #         name: Casterlabs-Caffeinated-gnulinux-arm.tar.gz
+  #         path: dist/artifacts/Casterlabs-Caffeinated-gnulinux-arm.tar.gz
 
-      - name: 🆙 Upload the Linux artifact to GitHub (x86_64)
-        uses: actions/upload-artifact@v3
-        with:
-          name: Casterlabs-Caffeinated-gnulinux-x86_64.tar.gz
-          path: dist/artifacts/Casterlabs-Caffeinated-gnulinux-x86_64.tar.gz
+  #     - name: 🆙 Upload the Linux artifact to GitHub (x86_64)
+  #       uses: actions/upload-artifact@v3
+  #       with:
+  #         name: Casterlabs-Caffeinated-gnulinux-x86_64.tar.gz
+  #         path: dist/artifacts/Casterlabs-Caffeinated-gnulinux-x86_64.tar.gz
