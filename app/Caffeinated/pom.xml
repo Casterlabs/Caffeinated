@@ -93,6 +93,12 @@
 		</dependency>
 		<dependency>
 			<groupId>co.casterlabs</groupId>
+			<artifactId>WidgetEnvironment</artifactId>
+			<version>${project.parent.version}</version>
+			<scope>compile</scope>
+		</dependency>
+		<dependency>
+			<groupId>co.casterlabs</groupId>
 			<artifactId>Util</artifactId>
 			<version>${project.parent.version}</version>
 			<scope>compile</scope>

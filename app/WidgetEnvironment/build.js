@@ -11,5 +11,5 @@ build({
     ...sharedConfig,
     platform: 'browser',
     format: 'iife',
-    outfile: "../app/Caffeinated/src/main/resources/widget-environment.js",
+    outfile: "./target/classes/widget-environment.js",
 });
