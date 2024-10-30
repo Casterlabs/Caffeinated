@@ -1,4 +1,6 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<artifactId>built_in_plugins</artifactId>
 
@@ -23,10 +25,12 @@
 							<goal>copy-resources</goal>
 						</goals>
 						<configuration>
-							<outputDirectory>${project.basedir}/src/main/widgets/static/loader</outputDirectory>
+							<outputDirectory>
+								${project.basedir}/src/main/widgets/static/loader</outputDirectory>
 							<resources>
 								<resource>
-									<directory>${project.basedir}/../widget-loader</directory>
+									<directory>
+										${project.basedir}/../widget-loader</directory>
 								</resource>
 							</resources>
 						</configuration>
@@ -47,14 +51,14 @@
 						<goals>
 							<goal>install-node-and-npm</goal>
 						</goals>
-    					<phase>compile</phase>
+						<phase>compile</phase>
 					</execution>
 					<execution>
 						<id>npm install</id>
 						<goals>
 							<goal>npm</goal>
 						</goals>
-    					<phase>compile</phase>
+						<phase>compile</phase>
 						<configuration>
 							<arguments>install</arguments>
 						</configuration>
@@ -64,7 +68,7 @@
 						<goals>
 							<goal>npm</goal>
 						</goals>
-    					<phase>compile</phase>
+						<phase>compile</phase>
 						<configuration>
 							<arguments>run build</arguments>
 						</configuration>

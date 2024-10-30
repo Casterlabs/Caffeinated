@@ -23,7 +23,6 @@
 	</repositories>
 
 	<dependencies>
-
 		<dependency>
 			<groupId>co.casterlabs.caffeinated</groupId>
 			<artifactId>util</artifactId>
@@ -68,6 +67,5 @@
 			<version>1.5.3</version>
 			<scope>compile</scope>
 		</dependency>
-
 	</dependencies>
 </project>
