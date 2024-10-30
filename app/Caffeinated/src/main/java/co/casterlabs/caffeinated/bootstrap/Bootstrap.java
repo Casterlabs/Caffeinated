@@ -135,8 +135,15 @@ public class Bootstrap implements Runnable {
     @SneakyThrows
     @Override
     public void run() {
-        FastLoggingFramework.setColorEnabled(this.enableColor);
         System.setProperty("fastloggingframework.wrapsystem", "true");
+        FastLoggingFramework.setColorEnabled(this.enableColor);
+
+        if (this.enableTraceLogging) {
+            FastLoggingFramework.setDefaultLevel(LogLevel.TRACE);
+        } else if (isDev || this.enableDebugLogging) {
+            FastLoggingFramework.setDefaultLevel(LogLevel.DEBUG);
+        }
+        logger.setCurrentLevel(FastLoggingFramework.getDefaultLevel());
 
         File expectUpdaterFile = getAppFile("expect-updater");
         if (expectUpdaterFile.exists()) {
@@ -161,37 +168,12 @@ public class Bootstrap implements Runnable {
 
         ReflectionLib.setStaticValue(CaffeinatedPlugin.class, "devEnvironment", isDev);
 
-        // Check for another instance, and do IPC things.
-        if (!InstanceManager.isSingleInstance()) {
-            if (isDev) {
-                logger.info("App is already running, closing it now.");
-                InstanceManager.closeOtherInstance();
-                logger.info("Launching as if nothing happened...");
-            } else {
-                logger.info("App is already running, summoning it now.");
-
-                if (InstanceManager.trySummonInstance()) {
-                    System.exit(0);
-                    return;
-                } else {
-                    logger.warn("Summon failed, launching anyways.");
-                }
+        new IPCWatcher(new File(CaffeinatedApp.APP_DATA_DIR, "/ipc/die")) {
+            @Override
+            public void onTrigger() {
+                shutdown();
             }
-        } else {
-            logger.info("Starting app.");
-        }
-
-        InstanceManager.startIpcHost();
-
-        // We do this down here because of the IPC.
-        if (this.enableTraceLogging) {
-            FastLoggingFramework.setDefaultLevel(LogLevel.TRACE);
-        } else if (isDev || this.enableDebugLogging) {
-            FastLoggingFramework.setDefaultLevel(LogLevel.DEBUG);
-        }
-
-        // Update the log level.
-        logger.setCurrentLevel(FastLoggingFramework.getDefaultLevel());
+        }.start();
 
         AsyncTask.create(() -> {
             try {
@@ -396,7 +378,6 @@ public class Bootstrap implements Runnable {
 
             // App
             CaffeinatedApp.getInstance().shutdown();
-            InstanceManager.cleanShutdown();
 
             // UI
             TrayHandler.destroy();
