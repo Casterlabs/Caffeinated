@@ -1,5 +1,7 @@
 #!/bin/sh
 
+cd app
+
 # Copy the widget loader to the appropriate places...
 ./mvnw generate-sources
 # Then run the dev servers.
