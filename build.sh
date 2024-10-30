@@ -12,7 +12,7 @@ if [[ $@ == *"compile"* ]]; then
     echo "------------ Compiling app ------------"
 
     cd app
-    ./mvnw clean package
+    bash ./mvnw clean package
     cd ..
 
     echo "------------ Finishing compiling app ---------"
