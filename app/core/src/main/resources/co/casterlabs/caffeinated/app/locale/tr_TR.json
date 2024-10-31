@@ -1,12 +1,12 @@
 {
-    "prefix": "co.casterlabs.caffeinated.app",
-    "useRegexMode": false,
+    "prefix": "",
+    "useRegexMode": "",
     "keys": {
         "love": "Casterlabs tarafından ♥ ile yapıldı",
         "copyright": "Telif Hakkı © {year} Casterlabs. Her hakkı saklıdır.",
         "unsupported_feature": "Desteklenmiyor",
         "unsupported_feature.item": "[co.casterlabs.caffeinated.app.platform.{item}] tarafından desteklenmiyor.",
-        "sdk_documentation": "Belgeleri mi arıyordun? Buraya <a class=\"text-link underline\" href=\"https://casterlabs.github.io/caffeinated-sdk/\" target=\"_blank\"> bakabilirsin. Caffeinated SDK Wiki</a>.",
+        "sdk_documentation": "",
         "platform.TWITCH": "Twitch",
         "platform.TROVO": "Trovo",
         "platform.YOUTUBE": "YouTube",
@@ -175,6 +175,7 @@
         "docks.chat.viewer.all_platforms": "Tümü",
         "docks.chat.viewer.send_message.placeholder": "Mesaj gönder",
         "docks.chat.viewer.user_history.title": "%user% için mesaj geçmişi gösteriliyor",
+        "docks.chat.viewer.scrolling_paused": "",
         "docks.chat.viewer.preferences.title": "Sohbet Tercihleri",
         "docks.chat.viewer.preferences.show_chat_timestamps": "Zaman damgalarını göster",
         "docks.chat.viewer.preferences.show_profile_pictures": "Avatarları göster",
@@ -196,7 +197,7 @@
         "docks.chat.viewer.tts.skip": "Mesajı atla",
         "docks.chat.viewer.tts.event_format.RICH_MESSAGE.ASKS": "%name%, {message} soruyor",
         "docks.chat.viewer.tts.event_format.RICH_MESSAGE.SAYS": "%name% şunu söyledi: {message}",
-        "docks.chat.viewer.tts.event_format.RICH_MESSAGE.LINK": "%name% bir bağlantı gönderdi.",
+        "docks.chat.viewer.tts.event_format.RICH_MESSAGE.SENT_A_LINK": "",
         "docks.chat.viewer.tts.event_format.RICH_MESSAGE.EMOTES": "%name% bazı ifadeler gönderdi.",
         "docks.chat.viewer.tts.event_format.RICH_MESSAGE.ATTACHMENT": "%name% bir ek gönderdi.",
         "docks.chat.viewer.tts.event_format.RICH_MESSAGE.REPLY": "%name%, {otherName} adlı kullanıcıya yanıt olarak {message} dedi.",
@@ -227,6 +228,12 @@
         "docks.channel_info.thumbnail": "Küçük Resim",
         "docks.channel_info.thumbnail.select_file": "Bir dosya seçin",
         "docks.channel_info.thumbnail.clear": "Temizle",
-        "docks.channel_info.update": "Güncelle"
+        "docks.channel_info.update": "Güncelle",
+        "status.OPERATIONAL": "",
+        "status.MAJOR_OUTAGE": "",
+        "status.MINOR_OUTAGE": "",
+        "status.PARTIAL_OUTAGE": "",
+        "status.DEGRADED_PERFORMANCE": "",
+        "status.MAINTENANCE": ""
     }
 }
