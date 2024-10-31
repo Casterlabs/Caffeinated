@@ -29,7 +29,6 @@
 	};
 
 	let widgetsByTag = {};
-	let tagsExpanded = { [null]: true, red: true, green: true, blue: true };
 	let creatableWidgetByCategory = {
 		ALERTS: [],
 		LABELS: [],
@@ -185,111 +184,100 @@
 {/if}
 
 <div class="mt-8">
-	{#each Object.entries(widgetsByTag) as [tag, widgets]}
-		{#if widgets.length > 0}
-			<button
-				class="block w-full my-2 rounded-lg border border-base-6 bg-base-2 p-5 shadow-sm focus:border-primary-7 focus:outline-none focus:ring-1 focus:ring-primary-7"
-				style:background={tag == 'red'
-					? 'var(--error)'
-					: tag == 'green'
-					? 'var(--success)'
-					: tag == 'blue'
-					? 'var(--link)'
-					: undefined}
-				on:click={() => (tagsExpanded[tag] = !tagsExpanded[tag])}
-			>
-				<LocalizedProperty
-					key={tagsExpanded[tag]
-						? 'co.casterlabs.caffeinated.app.page.widgets.click_to_shrink'
-						: 'co.casterlabs.caffeinated.app.page.widgets.click_to_expand'}
-					property="title"
-				/>
-				{#if tagsExpanded[tag]}
-					<CardList>
-						{#each widgets as widget}
-							<ContextMenu
-								bind:this={contextMenuMap[widget.id]}
-								items={[
-									{
-										type: 'button',
-										icon: 'icon/pencil-square',
-										text: 'co.casterlabs.caffeinated.app.page.widgets.edit_widget',
-										onclick() {
-											goto(`/$caffeinated-sdk-root$/widgets/edit?id=${widget.id}`);
-										}
-									},
-									{
-										type: 'select',
-										icon: 'icon/tag',
-										text: 'co.casterlabs.caffeinated.app.page.widgets.assign_tag',
-										selected: widget.tag,
-										options: TAGS,
-										onselect(tag) {
-											console.debug('User selected:', widget.tag, tag);
-											window.Caffeinated.pluginIntegration.assignTag(widget.id, tag);
-											refreshWidgetsList();
-										}
-									},
-									{
-										type: 'button',
-										icon: 'icon/document-duplicate',
-										text: 'co.casterlabs.caffeinated.app.page.widgets.copy_link',
-										onclick() {
-											window.Caffeinated.pluginIntegration.copyWidgetUrl(widget.id);
-										}
-									},
-									{ type: 'divider' },
-									{
-										type: 'button',
-										icon: 'icon/trash',
-										text: 'co.casterlabs.caffeinated.app.page.widgets.delete',
-										color: 'error',
-										onclick() {
-											window.Caffeinated.pluginIntegration.deleteWidget(widget.id);
-											refreshWidgetsList();
-										}
-									}
-								]}
-							>
-								<Card
-									icon={widget.details.icon}
-									text={widget.name}
-									href="/$caffeinated-sdk-root$/widgets/edit?id={widget.id}"
+	<CardList>
+		{#each Object.entries(widgetsByTag) as [tag, widgets]}
+			{#if widgets.length > 0}
+				{#each widgets as widget}
+					<ContextMenu
+						bind:this={contextMenuMap[widget.id]}
+						items={[
+							{
+								type: 'button',
+								icon: 'icon/pencil-square',
+								text: 'co.casterlabs.caffeinated.app.page.widgets.edit_widget',
+								onclick() {
+									goto(`/$caffeinated-sdk-root$/widgets/edit?id=${widget.id}`);
+								}
+							},
+							{
+								type: 'select',
+								icon: 'icon/tag',
+								text: 'co.casterlabs.caffeinated.app.page.widgets.assign_tag',
+								selected: widget.tag,
+								options: TAGS,
+								onselect(tag) {
+									console.debug('User selected:', widget.tag, tag);
+									window.Caffeinated.pluginIntegration.assignTag(widget.id, tag);
+									refreshWidgetsList();
+								}
+							},
+							{
+								type: 'button',
+								icon: 'icon/document-duplicate',
+								text: 'co.casterlabs.caffeinated.app.page.widgets.copy_link',
+								onclick() {
+									window.Caffeinated.pluginIntegration.copyWidgetUrl(widget.id);
+								}
+							},
+							{ type: 'divider' },
+							{
+								type: 'button',
+								icon: 'icon/trash',
+								text: 'co.casterlabs.caffeinated.app.page.widgets.delete',
+								color: 'error',
+								onclick() {
+									window.Caffeinated.pluginIntegration.deleteWidget(widget.id);
+									refreshWidgetsList();
+								}
+							}
+						]}
+					>
+						<Card
+							icon={widget.details.icon}
+							text={widget.name}
+							href="/$caffeinated-sdk-root$/widgets/edit?id={widget.id}"
+						>
+							<LocalizedProperty
+								key="co.casterlabs.caffeinated.app.page.widgets.edit_widget"
+								property="title"
+							/>
+							<div class="text-right flex items-center space-x-1">
+								<button
+									class="text-base-12 hover:text-base-11"
+									on:click|stopPropagation={(e) => {
+										console.log(e);
+										contextMenuMap[widget.id].doOpen(e.pageX, e.pageY);
+									}}
 								>
 									<LocalizedProperty
-										key="co.casterlabs.caffeinated.app.page.widgets.edit_widget"
+										key="co.casterlabs.caffeinated.app.page.widgets.open_context_menu"
 										property="title"
 									/>
-									<div class="text-right flex items-center space-x-1">
-										<button
-											class="text-base-12 hover:text-base-11"
-											on:click|stopPropagation={(e) => {
-												console.log(e);
-												contextMenuMap[widget.id].doOpen(e.pageX, e.pageY);
-											}}
-										>
-											<LocalizedProperty
-												key="co.casterlabs.caffeinated.app.page.widgets.open_context_menu"
-												property="title"
-											/>
-											<span class="sr-only">
-												<LocalizedText
-													key="co.casterlabs.caffeinated.app.page.widgets.open_context_menu"
-												/>
-											</span>
-											<icon class="w-5 h-5" data-icon="icon/ellipsis-vertical" />
-										</button>
-									</div>
-								</Card>
-							</ContextMenu>
-						{/each}
-					</CardList>
-				{:else}
-					<LocalizedText key="co.casterlabs.caffeinated.app.page.widgets.click_to_expand" />
-				{/if}
-			</button>
-		{/if}
-	{/each}
+									<span class="sr-only">
+										<LocalizedText
+											key="co.casterlabs.caffeinated.app.page.widgets.open_context_menu"
+										/>
+									</span>
+									<icon class="w-5 h-5" data-icon="icon/ellipsis-vertical" />
+								</button>
+
+								<div
+									class="w-2 h-2 absolute right-2.5 top-2.5 rounded-full"
+									style:background={tag == 'red'
+										? 'var(--error)'
+										: tag == 'green'
+										? 'var(--success)'
+										: tag == 'blue'
+										? 'var(--link)'
+										: undefined}
+								></div>
+							</div>
+						</Card>
+					</ContextMenu>
+				{/each}
+			{/if}
+		{/each}
+	</CardList>
 
 	<button
 		class="fixed bottom-3 -translate-x-3 flex items-center justify-center shadow-sm rounded-lg border border-base-5 bg-base-1 p-2 focus:border-primary-7 focus:outline-none focus:ring-1 focus:ring-primary-7 overflow-hidden hover:overflow-visible"
