@@ -229,15 +229,18 @@ public class Bootstrap implements Runnable {
             .hardwareAcceleration(true);
 
         switch (Saucer.getBackend()) {
-            case "WebKitGtk":
+            case WEBKITGTK:
                 break;
 
-            case "WebKit":
+            case WEBKIT:
                 break;
 
-            case "WebView2":
+            case WEBVIEW2:
                 preferences.addBrowserFlag("-msWebView2SimulateMemoryPressureWhenInactive=true");
                 break;
+
+            default:
+                break; // N/A
         }
 
         // Init and start the local server.
