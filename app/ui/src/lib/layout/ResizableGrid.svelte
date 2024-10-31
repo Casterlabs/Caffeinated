@@ -256,7 +256,7 @@
 
 		<button
 			on:click={() => ($isResizingLocked = !$isResizingLocked)}
-			class="relative ml-1.5 -translate-y-1 w-6 h-6 text-base-12"
+			class="relative ml-1.5 translate-y-1 w-6 h-6 text-base-12"
 		>
 			<icon
 				class="absolute inset-0 transition-all"
