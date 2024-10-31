@@ -11,6 +11,9 @@ import app.saucer.Saucer;
 import app.saucer.SaucerWebview.SaucerWebviewListener;
 import app.saucer.SaucerWindow.SaucerWindowListener;
 import app.saucer.utils.SaucerApp;
+import app.saucer.utils.SaucerDesktop;
+import app.saucer.utils.SaucerNavigation;
+import app.saucer.utils.SaucerNavigation.NavigationType;
 import app.saucer.utils.SaucerPreferences;
 import co.casterlabs.caffeinated.app.BuildInfo;
 import co.casterlabs.caffeinated.app.CaffeinatedApp;
@@ -285,6 +288,15 @@ public class Bootstrap implements Runnable {
         }, JsonArray.class);
 
         saucer.webview().setListener(new SaucerWebviewListener() {
+            @Override
+            public boolean onNavigate(SaucerNavigation navigation) {
+                if (navigation.getType() == NavigationType.NEW_WINDOW) {
+                    SaucerDesktop.open(navigation.getTargetUrl());
+                    return false;
+                }
+                return true;
+            }
+
             @Override
             public void onTitle(String newTitle) {
                 if (newTitle.contains("app://") || newTitle.contains("/$caffeinated-sdk-root$")) {

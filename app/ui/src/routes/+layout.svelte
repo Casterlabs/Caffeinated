@@ -5,7 +5,6 @@
 	import { get } from 'svelte/store';
 	import { onMount } from 'svelte';
 	import hookIcons from '$lib/icons.mjs';
-	import hookAnchors from '$lib/intercept-anchors.mjs';
 	import * as appShim from '$lib/appShim.mjs';
 	import * as App from '$lib/app.mjs';
 	import * as Currencies from '$lib/currencies.mjs';
@@ -28,7 +27,6 @@
 		appShim.init();
 
 		hookIcons('/$caffeinated-sdk-root$');
-		hookAnchors(App.openLink);
 
 		window.debug_goto = goto;
 		window.debug_get = get;
