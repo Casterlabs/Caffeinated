@@ -81,7 +81,7 @@
 	$: preferences, $preferences && console.debug('UI Preferences:', $preferences);
 
 	async function setPreferenceItem(name, value) {
-		Caffeinated.UI.updateAppearance({
+		await Caffeinated.UI.updateAppearance({
 			...(await Caffeinated.UI.preferences),
 			[name]: value
 		});
@@ -153,8 +153,7 @@
 			value={$preferences?.emojiProvider}
 			options={EMOJI_PROVIDERS}
 			on:value={({ detail: value }) => {
-				setPreferenceItem('emojiProvider', value);
-				location.reload();
+				setPreferenceItem('emojiProvider', value).then(() => location.reload());
 			}}
 		/>
 	</li>
@@ -164,8 +163,7 @@
 			value={$currentLocale}
 			options={Object.fromEntries(Object.entries($locales).map(([k, v]) => [k, v.name]))}
 			on:value={({ detail: value }) => {
-				setPreferenceItem('language', value);
-				location.reload();
+				setPreferenceItem('language', value).then(() => location.reload());
 			}}
 		/>
 	</li>
