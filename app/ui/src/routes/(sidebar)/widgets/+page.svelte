@@ -29,7 +29,7 @@
 	};
 
 	let widgetsByTag = {};
-	let tagsExpanded = { [null]: true };
+	let tagsExpanded = { [null]: true, red: true, green: true, blue: true };
 	let creatableWidgetByCategory = {
 		ALERTS: [],
 		LABELS: [],
