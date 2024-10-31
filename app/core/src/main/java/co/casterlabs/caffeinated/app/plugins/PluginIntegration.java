@@ -211,6 +211,7 @@ public class PluginIntegration {
         }
     }
 
+    @SneakyThrows
     @JavascriptFunction
     public void createNewWidget(@NonNull String namespace, @NonNull String name) {
         WidgetHandle handle = this.plugins.createWidget(namespace, UUID.randomUUID().toString(), name, null);
@@ -218,6 +219,8 @@ public class PluginIntegration {
         handle.onSettingsUpdate(new JsonObject());
 
         this.save(handle);
+
+        Thread.sleep(10); // Wait a tiny bit before navigating.
         CaffeinatedApp.getInstance().getUI().navigate("/widgets/edit?id=" + handle.id);
     }
 
