@@ -97,7 +97,9 @@ public class Bootstrap implements Runnable {
     private static @Getter boolean isDev;
 
     public static void main(String[] args) throws Exception {
+        System.setProperty("saucer.java.help.dependencies", "https://casterlabs.co/caffeinated/dependencies");
         Bootstrap.class.getClassLoader().setDefaultAssertionStatus(true);
+
         SaucerApp.initialize("co.casterlabs.caffeinated", () -> {
             System.out.println(" > System.out.println(\"Hello World!\");\nHello World!\n\n");
 
