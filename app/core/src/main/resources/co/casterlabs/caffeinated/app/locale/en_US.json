@@ -6,7 +6,7 @@
         "copyright": "Copyright © {year} Casterlabs. All rights reserved.",
         "unsupported_feature": "Not supported",
         "unsupported_feature.item": "Not supported by [co.casterlabs.caffeinated.app.platform.{item}].",
-        "sdk_documentation": "Looking for documentation? Look at the <a class=\"text-link underline\" href=\"https://casterlabs.github.io/caffeinated-sdk/\" target=\"_blank\">Caffeinated SDK Wiki</a>.",
+        "sdk_documentation": "Looking for documentation? Look at the <a class=\"text-link underline\" href=\"https://docs.casterlabs.co/sdk\" target=\"_blank\">Caffeinated SDK Wiki</a>.",
         "platform.TWITCH": "Twitch",
         "platform.TROVO": "Trovo",
         "platform.YOUTUBE": "YouTube",

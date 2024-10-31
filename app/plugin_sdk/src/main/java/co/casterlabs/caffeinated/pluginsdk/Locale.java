@@ -10,9 +10,9 @@ public enum Locale {
     // @formatter:off
     EN_US    (WritingDirection.LEFT_TO_RIGHT, "🇺🇸", "English (United States)"),
     ES_ES    (WritingDirection.LEFT_TO_RIGHT, "🇪🇸", "Español"),
-    ES_419   (WritingDirection.LEFT_TO_RIGHT, "🌎", "Español Latino"),
     FR_FR    (WritingDirection.LEFT_TO_RIGHT, "🇫🇷", "Français"),
     DA_DK    (WritingDirection.LEFT_TO_RIGHT, "🇩🇰", "Dansk"),
+    DE_DE    (WritingDirection.LEFT_TO_RIGHT, "🇩🇪", "Deutsch"),
     ID_ID    (WritingDirection.LEFT_TO_RIGHT, "🇮🇩", "Bahasa Indonesia"),
     RU_RU    (WritingDirection.LEFT_TO_RIGHT, "🇷🇺", "Русский"),
     TR_TR    (WritingDirection.LEFT_TO_RIGHT, "🇹🇷", "Türkçe"),

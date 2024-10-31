@@ -1,12 +1,12 @@
 {
-    "prefix": "co.casterlabs.caffeinated.app",
-    "useRegexMode": false,
+    "prefix": "",
+    "useRegexMode": "",
     "keys": {
         "love": "Dibuat dengan ♥ oleh Casterlabs",
         "copyright": "Hak Cipta © {year} Casterlabs. Seluruh Hak Cipta dilindungi undang-undang.",
         "unsupported_feature": "Tidak didukung",
         "unsupported_feature.item": "Tidak didukung oleh [co.casterlabs.caffeinated.app.platform.{item}].",
-        "sdk_documentation": "Sedang mencari dokumentasi? bisa cek di <a class=\"text-link underline\" href=\"https://casterlabs.github.io/caffeinated-sdk/\" target=\"_blank\">Caffeinated SDK Wiki</a>.",
+        "sdk_documentation": "",
         "platform.TWITCH": "Twitch",
         "platform.TROVO": "Trovo",
         "platform.YOUTUBE": "YouTube",
@@ -175,6 +175,7 @@
         "docks.chat.viewer.all_platforms": "Semua",
         "docks.chat.viewer.send_message.placeholder": "Kirim sebuah pesan",
         "docks.chat.viewer.user_history.title": "Menunjukan riwayat pesan dari pengguna: %user%",
+        "docks.chat.viewer.scrolling_paused": "",
         "docks.chat.viewer.preferences.title": "Preferensi percakapan",
         "docks.chat.viewer.preferences.show_chat_timestamps": "Tampilkan stempel waktu",
         "docks.chat.viewer.preferences.show_profile_pictures": "Tampilkan avatar",
@@ -196,7 +197,7 @@
         "docks.chat.viewer.tts.skip": "Lewati pesan",
         "docks.chat.viewer.tts.event_format.RICH_MESSAGE.ASKS": "%name% meminta {message}",
         "docks.chat.viewer.tts.event_format.RICH_MESSAGE.SAYS": "%name% berkata {message}",
-        "docks.chat.viewer.tts.event_format.RICH_MESSAGE.SENT_A_LINK": "%name% sent a link.",
+        "docks.chat.viewer.tts.event_format.RICH_MESSAGE.SENT_A_LINK": "%name% mengirimkan sebuah tautan.",
         "docks.chat.viewer.tts.event_format.RICH_MESSAGE.EMOTES": "%name% mengirimkan beberapa emot.",
         "docks.chat.viewer.tts.event_format.RICH_MESSAGE.ATTACHMENT": "%name% mengirim sebuah lampiran.",
         "docks.chat.viewer.tts.event_format.RICH_MESSAGE.REPLY": "%name% berkata, untuk merespon {otherName}, {message}.",
@@ -228,11 +229,11 @@
         "docks.channel_info.thumbnail.select_file": "Pilih sebuah file",
         "docks.channel_info.thumbnail.clear": "Bersihkan",
         "docks.channel_info.update": "Pembaruan",
-        "status.OPERATIONAL": "We are operational.",
-        "status.MAJOR_OUTAGE": "There is a major outage",
-        "status.MINOR_OUTAGE": "There is a minor outage",
-        "status.PARTIAL_OUTAGE": "There is a partial outage",
-        "status.DEGRADED_PERFORMANCE": "We are currently experiencing degraded performance",
-        "status.MAINTENANCE": "We are currently performing maintenance"
+        "status.OPERATIONAL": "Kami beroperasi.",
+        "status.MAJOR_OUTAGE": "Kami saat ini sedang mengalami gangguan skala besar",
+        "status.MINOR_OUTAGE": "Kami saat ini sedang mengalami gangguan skala kecil",
+        "status.PARTIAL_OUTAGE": "Kami saat ini sedang mengalami gangguan sebagian",
+        "status.DEGRADED_PERFORMANCE": "Kami saat ini sedang mengalami penurunan kinerja",
+        "status.MAINTENANCE": "Kami saat ini sedang melakukan perbaikan"
     }
 }

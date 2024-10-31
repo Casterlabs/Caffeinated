@@ -24,12 +24,12 @@ public class _LocaleLoader {
                 provider = da_DK.class.newInstance().get();
                 break;
 
+            case "DE_DE":
+                provider = de_DE.class.newInstance().get();
+                break;
+
             case "EN_US":
                 return FALLBACK;
-
-            case "ES_419":
-                provider = es_419.class.newInstance().get();
-                break;
 
             case "ES_ES":
                 provider = es_ES.class.newInstance().get();

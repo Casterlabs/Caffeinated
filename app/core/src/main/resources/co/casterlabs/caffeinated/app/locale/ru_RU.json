@@ -6,7 +6,7 @@
         "copyright": "Авторское право © {year} Casterlabs. Все права защищены.",
         "unsupported_feature": "Не поддерживается",
         "unsupported_feature.item": "Не поддерживается [co.casterlabs.caffeinated.app.platform.{item}].",
-        "sdk_documentation": "Ищете документацию? Посмотрите <a class=\"text-link underline\" href=\"https://casterlabs.github.io/caffeinated-sdk/\" target=\"_blank\">Caffeinated SDK Вики</a>.",
+        "sdk_documentation": "Looking for documentation? Look at the <a class=\"text-link underline\" href=\"https://docs.casterlabs.co/sdk\" target=\"_blank\">Caffeinated SDK Wiki</a>.",
         "platform.TWITCH": "Twitch",
         "platform.TROVO": "Trovo",
         "platform.YOUTUBE": "YouTube",
@@ -175,6 +175,7 @@
         "docks.chat.viewer.all_platforms": "Все",
         "docks.chat.viewer.send_message.placeholder": "Отправить сообщение",
         "docks.chat.viewer.user_history.title": "Показана история сообщений для: %user%",
+        "docks.chat.viewer.scrolling_paused": "Scrolling paused",
         "docks.chat.viewer.preferences.title": "Параметры чата",
         "docks.chat.viewer.preferences.show_chat_timestamps": "Показывать временные метки",
         "docks.chat.viewer.preferences.show_profile_pictures": "Показывать аватарки",
@@ -196,7 +197,7 @@
         "docks.chat.viewer.tts.skip": "Пропустить сообщение",
         "docks.chat.viewer.tts.event_format.RICH_MESSAGE.ASKS": "%name% спрашивает {message}",
         "docks.chat.viewer.tts.event_format.RICH_MESSAGE.SAYS": "%name% сказал(а) {message}",
-        "docks.chat.viewer.tts.event_format.RICH_MESSAGE.LINK": "%name% отправил(а) ссылку.",
+        "docks.chat.viewer.tts.event_format.RICH_MESSAGE.SENT_A_LINK": "%name% отправил ссылку.",
         "docks.chat.viewer.tts.event_format.RICH_MESSAGE.EMOTES": "%name% отправил(а) несколько эмоций.",
         "docks.chat.viewer.tts.event_format.RICH_MESSAGE.ATTACHMENT": "%name% отправил(а) вложение.",
         "docks.chat.viewer.tts.event_format.RICH_MESSAGE.REPLY": "%name% сказал(а) в ответ на {otherName}, {message}.",
@@ -227,6 +228,12 @@
         "docks.channel_info.thumbnail": "Обложка",
         "docks.channel_info.thumbnail.select_file": "Выбрать файл",
         "docks.channel_info.thumbnail.clear": "Очистить",
-        "docks.channel_info.update": "Обновление"
+        "docks.channel_info.update": "Обновление",
+        "status.OPERATIONAL": "Мы работаем.",
+        "status.MAJOR_OUTAGE": "Есть серьёзные проблемы",
+        "status.MINOR_OUTAGE": "Есть незначительные проблемы",
+        "status.PARTIAL_OUTAGE": "Частичная остановка",
+        "status.DEGRADED_PERFORMANCE": "В настоящее время мы испытываем ухудшение производительности",
+        "status.MAINTENANCE": "В настоящее время мы проводим техническое обслуживание"
     }
 }
