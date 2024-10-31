@@ -178,11 +178,6 @@ public class AppUI {
             // Otherwise AppAuth will automagically move us there :D
             FastLogger.logStatic(LogLevel.DEBUG, "Waiting for auth to navigate us. (ui-loaded)");
         }
-        if (auth.isSignedIn()) {
-            this.navigate("/dashboard");
-        } else {
-            this.navigate("/signin");
-        }
     }
 
     @JavascriptFunction
