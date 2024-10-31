@@ -1,12 +1,12 @@
 {
-    "prefix": "co.casterlabs.caffeinated.app",
-    "useRegexMode": false,
+    "prefix": "",
+    "useRegexMode": "",
     "keys": {
         "love": "Fabriqué avec ♥️ par Casterlabs",
         "copyright": "Droits d'auteur ©️ {year} Casterlabs. Tous droits réservés.",
         "unsupported_feature": "Non supporté",
         "unsupported_feature.item": "Non supporté par [co.casterlabs.caffeinated.app.platform.{item}].",
-        "sdk_documentation": "Vous cherchez de la documentation ? Regardez le <a class=\"text-link underline\" href=\"https://casterlabs.github.io/caffeinated-sdk/\" target=\"_blank\">Wiki SDK</a>.",
+        "sdk_documentation": "",
         "platform.TWITCH": "Twitch",
         "platform.TROVO": "Trovo",
         "platform.YOUTUBE": "YouTube",
@@ -175,6 +175,7 @@
         "docks.chat.viewer.all_platforms": "Toutes",
         "docks.chat.viewer.send_message.placeholder": "Envoyer le message",
         "docks.chat.viewer.user_history.title": "Historique des messages pour : %user%",
+        "docks.chat.viewer.scrolling_paused": "",
         "docks.chat.viewer.preferences.title": "Préférences du chat",
         "docks.chat.viewer.preferences.show_chat_timestamps": "Afficher l'horodatage",
         "docks.chat.viewer.preferences.show_profile_pictures": "Afficher les avatars",
@@ -196,7 +197,7 @@
         "docks.chat.viewer.tts.skip": "Ignorer le message",
         "docks.chat.viewer.tts.event_format.RICH_MESSAGE.ASKS": "%name% demande {message}",
         "docks.chat.viewer.tts.event_format.RICH_MESSAGE.SAYS": "%name% a dit {message}",
-        "docks.chat.viewer.tts.event_format.RICH_MESSAGE.LINK": "%name% a envoyé un lien.",
+        "docks.chat.viewer.tts.event_format.RICH_MESSAGE.SENT_A_LINK": "",
         "docks.chat.viewer.tts.event_format.RICH_MESSAGE.EMOTES": "%name% a envoyé des emotes.",
         "docks.chat.viewer.tts.event_format.RICH_MESSAGE.ATTACHMENT": "%name% a envoyé une pièce jointe.",
         "docks.chat.viewer.tts.event_format.RICH_MESSAGE.REPLY": "%name% a dit, en réponse à {otherName}, {message}.",
@@ -227,6 +228,12 @@
         "docks.channel_info.thumbnail": "Miniature",
         "docks.channel_info.thumbnail.select_file": "Sélectionner un fichier",
         "docks.channel_info.thumbnail.clear": "Effacer",
-        "docks.channel_info.update": "Mettre à jour"
+        "docks.channel_info.update": "Mettre à jour",
+        "status.OPERATIONAL": "",
+        "status.MAJOR_OUTAGE": "",
+        "status.MINOR_OUTAGE": "",
+        "status.PARTIAL_OUTAGE": "",
+        "status.DEGRADED_PERFORMANCE": "",
+        "status.MAINTENANCE": ""
     }
 }
