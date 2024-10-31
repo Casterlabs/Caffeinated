@@ -8,6 +8,8 @@
 
 	import { onMount } from 'svelte';
 
+	const uiPreferences = st || window.svelte('Caffeinated.UI', 'preferences');
+
 	let docks = [];
 	let showingTutorialModal = false;
 
@@ -69,21 +71,23 @@
 						</span>
 						<icon class="w-5 h-5" data-icon="icon/document-duplicate" />
 					</button>
-					<!-- <button
-						class="text-base-12 hover:text-base-11"
-						on:click|stopPropagation={() => {
-							window.Caffeinated.pluginIntegration.openPopout(dock.id);
-						}}
-					>
-						<LocalizedProperty
-							key="co.casterlabs.caffeinated.app.page.widgets.popout_new_window"
-							property="title"
-						/>
-						<span class="sr-only">
-							<LocalizedText key="co.casterlabs.caffeinated.app.page.widgets.popout_new_window" />
-						</span>
-						<icon class="w-5 h-5" data-icon="icon/arrow-right-start-on-rectangle" />
-					</button> -->
+					{#if $uiPreferences?.enableStupidlyUnsafeSettings}
+						<button
+							class="text-base-12 hover:text-base-11"
+							on:click|stopPropagation={() => {
+								window.Caffeinated.pluginIntegration.openPopout(dock.id);
+							}}
+						>
+							<LocalizedProperty
+								key="co.casterlabs.caffeinated.app.page.widgets.popout_new_window"
+								property="title"
+							/>
+							<span class="sr-only">
+								<LocalizedText key="co.casterlabs.caffeinated.app.page.widgets.popout_new_window" />
+							</span>
+							<icon class="w-5 h-5" data-icon="icon/arrow-right-start-on-rectangle" />
+						</button>
+					{/if}
 				</div>
 			</Card>
 		{/each}

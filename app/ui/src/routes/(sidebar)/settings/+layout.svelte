@@ -15,7 +15,7 @@
 		['co.casterlabs.caffeinated.app.page.settings.accounts',   '/$caffeinated-sdk-root$/settings/accounts'],
 		['co.casterlabs.caffeinated.app.page.settings.plugins',    '/$caffeinated-sdk-root$/settings/plugins'],
 		['co.casterlabs.caffeinated.app.page.settings.about',      '/$caffeinated-sdk-root$/settings/about'],
-		['Developer Stuff',          '/$caffeinated-sdk-root$/settings/developer-stuff']
+		['Developer Stuff',                                        '/$caffeinated-sdk-root$/settings/developer-stuff']
 	];
 
 	// Filter the list of tabs for a match.
