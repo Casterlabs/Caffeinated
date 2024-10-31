@@ -175,7 +175,7 @@
         "docks.chat.viewer.all_platforms": "Semua",
         "docks.chat.viewer.send_message.placeholder": "Kirim sebuah pesan",
         "docks.chat.viewer.user_history.title": "Menunjukan riwayat pesan dari pengguna: %user%",
-        "docks.chat.viewer.scrolling_paused": "",
+        "docks.chat.viewer.scrolling_paused": "Penggeseran dihentikan sementara",
         "docks.chat.viewer.preferences.title": "Preferensi percakapan",
         "docks.chat.viewer.preferences.show_chat_timestamps": "Tampilkan stempel waktu",
         "docks.chat.viewer.preferences.show_profile_pictures": "Tampilkan avatar",
