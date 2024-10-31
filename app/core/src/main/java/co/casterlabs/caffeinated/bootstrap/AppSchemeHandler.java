@@ -13,6 +13,7 @@ import xyz.e3ndr.fastloggingframework.logging.FastLogger;
 import xyz.e3ndr.fastloggingframework.logging.LogLevel;
 
 public class AppSchemeHandler implements SaucerSchemeHandler {
+    public static final AppSchemeHandler INSTANCE = new AppSchemeHandler();
 
     @SneakyThrows
     @Override

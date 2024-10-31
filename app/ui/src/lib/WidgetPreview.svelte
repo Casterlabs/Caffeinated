@@ -15,7 +15,7 @@
 
 {#if url}
 	{#if mode == 'DOCK'}
-		<iframe class="w-full h-full" aria-hidden={ariaHidden} title="" src={url} />
+		<iframe class="w-full h-full dock-widget-preview" aria-hidden={ariaHidden} title="" src={url} />
 	{:else}
 		<div class="max-w-md mx-auto mt-6 mb-8">
 			<h1 class="font-semibold text-xl">

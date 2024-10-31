@@ -97,6 +97,8 @@ public class Bootstrap implements Runnable {
     private static @Getter BuildInfo buildInfo;
 
     private static @Getter Saucer saucer;
+    private static @Getter SaucerPreferences preferences;
+    private static @Getter String appUrl;
     private static @Getter boolean isDev;
 
     public static void main(String[] args) throws Exception {
@@ -223,6 +225,21 @@ public class Bootstrap implements Runnable {
         logger.info("bootstrap.args               | %s", System.getProperty("sun.java.command"));
         logger.info("");
 
+        preferences = SaucerPreferences.create()
+            .hardwareAcceleration(true);
+
+        switch (Saucer.getBackend()) {
+            case "WebKitGtk":
+                break;
+
+            case "WebKit":
+                break;
+
+            case "WebView2":
+                preferences.addBrowserFlag("-msWebView2SimulateMemoryPressureWhenInactive=true");
+                break;
+        }
+
         // Init and start the local server.
         try {
             localServer = new LocalServer(app.getAppPreferences().get().getConductorPort());
@@ -234,26 +251,13 @@ public class Bootstrap implements Runnable {
 
         // Setup the webview.
         logger.info("Initializing UI (this may take some time)");
+        appUrl = (isDev ? this.devAddress : "app://authority") + "/$caffeinated-sdk-root$";
+        logger.info("appAddress = %s", appUrl);
 
         boolean traySupported = TrayHandler.tryCreateTray();
 
         SaucerApp.dispatch(() -> {
             Saucer.registerCustomScheme("app");
-
-            SaucerPreferences preferences = SaucerPreferences.create()
-                .hardwareAcceleration(true);
-
-            switch (Saucer.getBackend()) {
-                case "WebKitGtk":
-                    break;
-
-                case "WebKit":
-                    break;
-
-                case "WebView2":
-                    preferences.addBrowserFlag("-msWebView2SimulateMemoryPressureWhenInactive=true");
-                    break;
-            }
 
             saucer = Saucer.create(preferences);
 
@@ -262,10 +266,8 @@ public class Bootstrap implements Runnable {
 
             saucer.webview().setContextMenuAllowed(false);
 
-            String appUrl = (isDev ? this.devAddress : "app://authority") + "/$caffeinated-sdk-root$";
-            saucer.webview().setSchemeHandler(new AppSchemeHandler());
+            saucer.webview().setSchemeHandler(AppSchemeHandler.INSTANCE);
             saucer.webview().setUrl(appUrl);
-            logger.info("appAddress = %s", appUrl);
 
             saucer.window().show();
         });
