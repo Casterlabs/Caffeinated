@@ -4,7 +4,7 @@ import java.nio.charset.StandardCharsets;
 import java.util.UUID;
 
 import co.casterlabs.caffeinated.app.CaffeinatedApp;
-import co.casterlabs.caffeinated.bootstrap.FileUtil;
+import co.casterlabs.caffeinated.app.Resources;
 import co.casterlabs.caffeinated.localserver.RequestError;
 import co.casterlabs.caffeinated.localserver.RouteHelper;
 import co.casterlabs.caffeinated.localserver.websocket.RealtimeHeartbeatListener;
@@ -124,7 +124,7 @@ public class RouteWidgetApi implements HttpProvider, WebsocketProvider, RouteHel
                 int htmlStartIndex = content.indexOf("<html");
                 int htmlEndIndex = content.substring(htmlStartIndex).indexOf('>') + htmlStartIndex + 1;
 
-                String tagsToInject = String.format("<script>\n%s\n</script>", FileUtil.loadResource("widget-environment.js"));
+                String tagsToInject = String.format("<script>\n%s\n</script>", Resources.string("widget-environment.js"));
                 if (CaffeinatedPlugin.isDevEnvironment()) {
                     // https://github.com/liriliri/chii
                     tagsToInject += "<script src=\"https://chii.liriliri.io/playground/target.js\"></script>";

@@ -17,6 +17,7 @@ import app.saucer.utils.SaucerNavigation.NavigationType;
 import app.saucer.utils.SaucerPreferences;
 import co.casterlabs.caffeinated.app.BuildInfo;
 import co.casterlabs.caffeinated.app.CaffeinatedApp;
+import co.casterlabs.caffeinated.app.Resources;
 import co.casterlabs.caffeinated.bootstrap.impl.NativeBootstrap;
 import co.casterlabs.caffeinated.bootstrap.impl.linux.common.LinuxBootstrap;
 import co.casterlabs.caffeinated.bootstrap.impl.macos.common.MacOSBootstrap;
@@ -168,10 +169,9 @@ public class Bootstrap implements Runnable {
         Runtime.getRuntime().addShutdownHook(new Thread(Bootstrap::shutdown));
 
         isDev = this.devAddress != null;
-        ReflectionLib.setStaticValue(FileUtil.class, "isDev", isDev);
-        buildInfo = Rson.DEFAULT.fromJson(FileUtil.loadResource("build_info.json"), BuildInfo.class);
+        buildInfo = Rson.DEFAULT.fromJson(Resources.string("build_info.json"), BuildInfo.class);
 
-        writeAppFile("current_build_info.json", FileUtil.loadResourceBytes("build_info.json"));
+        writeAppFile("current_build_info.json", Resources.bytes("build_info.json"));
 
         ReflectionLib.setStaticValue(CaffeinatedPlugin.class, "devEnvironment", isDev);
 

@@ -7,6 +7,7 @@ import app.saucer.scheme.SaucerSchemeRequest;
 import app.saucer.scheme.SaucerSchemeResponse;
 import app.saucer.scheme.SaucerSchemeResponse.SaucerRequestError;
 import app.saucer.utils.SaucerStash;
+import co.casterlabs.caffeinated.app.Resources;
 import co.casterlabs.caffeinated.util.MimeTypes;
 import lombok.SneakyThrows;
 import xyz.e3ndr.fastloggingframework.logging.FastLogger;
@@ -43,7 +44,7 @@ public class AppSchemeHandler implements SaucerSchemeHandler {
         }
 
         try {
-            byte[] content = FileUtil.loadResourceBytes("co/casterlabs/caffeinated/app/ui/html" + path);
+            byte[] content = Resources.bytes("co/casterlabs/caffeinated/app/ui/html" + path);
             String mimeType = "application/octet-stream";
 
             String[] split = path.split("\\.");
