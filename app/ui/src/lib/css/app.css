@@ -35,24 +35,28 @@ icon {
 	pointer-events: none;
 }
 
-icon > svg {
+icon>svg {
 	width: 100%;
 	height: 100%;
 }
 
-icon > svg.icon-service * {
+icon>svg.icon-service * {
 	/* fill: currentColor !important; */
 }
 
-icon > svg.icon-outline * {
+icon>svg.icon-outline * {
 	stroke: currentColor;
 }
 
-#css-intermediate.dark-theme icon > svg.icon-outline {
+icon>svg.icon-solid * {
+	fill: currentColor;
+}
+
+#css-intermediate.dark-theme icon>svg.icon-outline {
 	display: none;
 }
 
-#css-intermediate:not(.dark-theme) icon > svg.icon-solid {
+#css-intermediate:not(.dark-theme) icon>svg.icon-solid {
 	display: none;
 }
 
