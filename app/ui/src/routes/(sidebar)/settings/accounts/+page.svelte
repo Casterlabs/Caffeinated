@@ -71,7 +71,7 @@
 									{@const connectionState = ($connectionStates || {})[userData.platform] || {}}
 
 									<a
-										href="/$caffeinated-sdk-root${userData.link}"
+										href={userData.link}
 										target="_blank"
 										class="ml-2 px-2 py-0.5 text-[0.675rem] leading-[1rem] bg-base-4 text-base-11 inline-flex items-center rounded-full font-base underline"
 									>
@@ -153,7 +153,7 @@
 									TEST / {userData.platform}
 
 									<a
-										href="/$caffeinated-sdk-root${userData.link}"
+										href={userData.link}
 										target="_blank"
 										class="ml-2 px-2 py-0.5 text-[0.675rem] leading-[1rem] bg-base-4 text-base-11 inline-flex items-center rounded-full font-base underline"
 									>
@@ -209,7 +209,7 @@
 
 								{#if provider.accountName}
 									<a
-										href="/$caffeinated-sdk-root${provider.accountLink}"
+										href={provider.accountLink}
 										target="_blank"
 										class="ml-2 px-2 py-0.5 text-[0.675rem] leading-[1rem] bg-base-4 text-base-11 inline-flex items-center rounded-full font-base underline"
 									>
