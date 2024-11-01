@@ -18,18 +18,10 @@ import co.casterlabs.commons.async.Promise;
 import xyz.e3ndr.fastloggingframework.logging.FastLogger;
 
 public class DeployHelper {
-    private static final String[] CAFFEINATED_ARTIFACTS = {
-            "Windows-amd64-nojre.zip",
-            "macOS-amd64-nojre.zip",
-            "Linux-amd64-nojre.zip",
-            "Windows-amd64.zip",
-            "macOS-amd64.zip",
-            "Linux-amd64.zip"
-    };
 
     private static final FastLogger logger = new FastLogger();
 
-    public static void main(String[] args) throws FileNotFoundException, IOException {
+    public static void main(String[] artifactsToUpload) throws FileNotFoundException, IOException {
 //        JsonObject githubEvent = Rson.DEFAULT.fromJson(
 //            IOUtil.readString(new FileInputStream(args[0] /* github event */)),
 //            JsonObject.class
@@ -74,9 +66,9 @@ public class DeployHelper {
         // Start all of the tasks in parallel.
         List<Promise<Void>> tasks = new LinkedList<>();
 
-        for (String artifact : CAFFEINATED_ARTIFACTS) {
+        for (String artifact : artifactsToUpload) {
             Promise<Void> promise = new Promise<>(() -> {
-                File artifactFile = new File("./dist/artifacts/" + artifact);
+                File artifactFile = new File(artifact);
 
                 logger.info("Uploading build artifact: %s to /dist/%s/%s (%d bytes)", artifactFile, branch, artifact, artifactFile.length());
 
@@ -98,9 +90,9 @@ public class DeployHelper {
 
         if (branch.equals("stable")) {
             // We need to also deploy to the beta branch to keep them up-to-date.
-            for (String artifact : CAFFEINATED_ARTIFACTS) {
+            for (String artifact : artifactsToUpload) {
                 Promise<Void> promise = new Promise<>(() -> {
-                    File artifactFile = new File("./dist/artifacts/" + artifact);
+                    File artifactFile = new File(artifact);
 
                     logger.info("Uploading build artifact: %s to /dist/beta/%s (%d bytes)", artifactFile, artifact, artifactFile.length());
 
