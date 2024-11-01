@@ -173,28 +173,28 @@ jobs:
       - name: 📩 Download the macOS aarch64 bundle
         uses: actions/download-artifact@v4
         with:
-          name: Casterlabs-Caffeinated-macos-aarch64.zip
+          name: Casterlabs-Caffeinated-macos-aarch64.tar.gz
           path: ./
       - name: 📩 Download the macOS x86_64 bundle
         uses: actions/download-artifact@v4
         with:
-          name: Casterlabs-Caffeinated-macos-x86_64.zip
+          name: Casterlabs-Caffeinated-macos-x86_64.tar.gz
           path: ./
 
       - name: 📩 Download the Linux aarch64 bundle
         uses: actions/download-artifact@v4
         with:
-          name: Casterlabs-Caffeinated-linux-aarch64.zip
+          name: Casterlabs-Caffeinated-linux-aarch64.tar.gz
           path: ./
       - name: 📩 Download the Linux arm bundle
         uses: actions/download-artifact@v4
         with:
-          name: Casterlabs-Caffeinated-linux-arm.zip
+          name: Casterlabs-Caffeinated-linux-arm.tar.gz
           path: ./
       - name: 📩 Download the Linux x86_64 bundle
         uses: actions/download-artifact@v4
         with:
-          name: Casterlabs-Caffeinated-linux-x86_64.zip
+          name: Casterlabs-Caffeinated-linux-x86_64.tar.gz
           path: ./
 
       - name: 🆙 Deploy the app.
@@ -205,8 +205,8 @@ jobs:
         run: >-
           java -jar deploy-helper/target/deploy-helper.jar
           Casterlabs-Caffeinated-windows-x86_64.zip
-          Casterlabs-Caffeinated-macos-aarch64.zip
-          Casterlabs-Caffeinated-macos-x86_64.zip
-          Casterlabs-Caffeinated-linux-aarch64.zip
-          Casterlabs-Caffeinated-linux-arm.zip
-          Casterlabs-Caffeinated-linux-x86_64.zip
+          Casterlabs-Caffeinated-macos-aarch64.tar.gz
+          Casterlabs-Caffeinated-macos-x86_64.tar.gz
+          Casterlabs-Caffeinated-linux-aarch64.tar.gz
+          Casterlabs-Caffeinated-linux-arm.tar.gz
+          Casterlabs-Caffeinated-linux-x86_64.tar.gz
