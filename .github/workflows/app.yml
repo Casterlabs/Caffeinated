@@ -164,10 +164,37 @@ jobs:
       - name: 🔨 Compile the deploy helper.
         run: cd deploy-helper && bash ./mvnw clean package
 
-      - name: 📩 Windows x86_64 bundle
+      - name: 📩 Download the Windows x86_64 bundle
         uses: actions/download-artifact@v4
         with:
           name: Casterlabs-Caffeinated-windows-x86_64.zip
+          path: ./
+
+      - name: 📩 Download the macOS aarch64 bundle
+        uses: actions/download-artifact@v4
+        with:
+          name: Casterlabs-Caffeinated-macos-aarch64.zip
+          path: ./
+      - name: 📩 Download the macOS x86_64 bundle
+        uses: actions/download-artifact@v4
+        with:
+          name: Casterlabs-Caffeinated-macos-x86_64.zip
+          path: ./
+
+      - name: 📩 Download the Linux aarch64 bundle
+        uses: actions/download-artifact@v4
+        with:
+          name: Casterlabs-Caffeinated-linux-aarch64.zip
+          path: ./
+      - name: 📩 Download the Linux arm bundle
+        uses: actions/download-artifact@v4
+        with:
+          name: Casterlabs-Caffeinated-linux-arm.zip
+          path: ./
+      - name: 📩 Download the Linux x86_64 bundle
+        uses: actions/download-artifact@v4
+        with:
+          name: Casterlabs-Caffeinated-linux-x86_64.zip
           path: ./
 
       - name: 🆙 Deploy the app.
