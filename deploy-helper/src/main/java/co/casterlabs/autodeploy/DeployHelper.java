@@ -27,27 +27,27 @@ public class DeployHelper {
 //            JsonObject.class
 //        );
 
-        if (!System.getenv().containsKey("BB_BUCKET_ID")) {
+        if (!System.getenv().containsKey("BB_BUCKET_ID") || System.getenv("BB_BUCKET_ID").isBlank()) {
             logger.fatal("Could not find BB_BUCKET_ID in the current env, aborting.");
             System.exit(1);
         }
 
-        if (!System.getenv().containsKey("BB_CLIENT_ID")) {
+        if (!System.getenv().containsKey("BB_CLIENT_ID") || System.getenv("BB_CLIENT_ID").isBlank()) {
             logger.fatal("Could not find BB_CLIENT_ID in the current env, aborting.");
             System.exit(1);
         }
 
-        if (!System.getenv().containsKey("BB_CLIENT_KEY")) {
+        if (!System.getenv().containsKey("BB_CLIENT_KEY") || System.getenv("BB_CLIENT_KEY").isBlank()) {
             logger.fatal("Could not find BB_CLIENT_KEY in the current env, aborting.");
             System.exit(1);
         }
 
-        if (!System.getenv().containsKey("GITHUB_SHA")) {
+        if (!System.getenv().containsKey("GITHUB_SHA") || System.getenv("GITHUB_SHA").isBlank()) {
             logger.fatal("Could not find GITHUB_SHA in the current env, aborting.");
             System.exit(1);
         }
 
-        if (!System.getenv().containsKey("GITHUB_REF_NAME")) {
+        if (!System.getenv().containsKey("GITHUB_REF_NAME") || System.getenv("GITHUB_REF_NAME").isBlank()) {
             logger.fatal("Could not find GITHUB_REF_NAME in the current env, aborting.");
             System.exit(1);
         }
