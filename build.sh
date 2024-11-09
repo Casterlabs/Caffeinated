@@ -5,7 +5,7 @@ set -e -o pipefail
 APP_ID="co.casterlabs.caffeinated"
 APP_NAME="Casterlabs-Caffeinated"
 MAIN_CLASS="co.casterlabs.caffeinated.bootstrap.Bootstrap"
-VM_OPTIONS="-Xms1M -XX:+UseCompressedOops -XX:+UseSerialGC -XX:MaxHeapFreeRatio=1 -XX:MinHeapFreeRatio=1"
+VM_OPTIONS='--arg=-Xms1M --arg=-XX:+UseCompressedOops --arg=-XX:+UseSerialGC --arg=-XX:MaxHeapFreeRatio=1 --arg=-XX:MinHeapFreeRatio=1'
 SAUCER4J_VERSION="1.0.0-pre4.1"
 
 if [[ $@ == *"compile"* ]]; then
@@ -24,7 +24,7 @@ if [[ $@ == *"dist-windows"* ]]; then
     java -jar bundler.jar bundle \
         --arch x86_64 --os windows \
         --id $APP_ID --name $APP_NAME --icon icon.png \
-        --java 11 --arg="$VM_OPTIONS" --main $MAIN_CLASS \
+        --java 11 $VM_OPTIONS --main $MAIN_CLASS \
         --file app/core/WMC-JsonConsoleWrapper.exe --dependency "app/core/target/Caffeinated.jar" \
         --dependency "https://jitpack.io|com.github.saucer.saucer4j:webview2:$SAUCER4J_VERSION:.jar"
 
@@ -37,14 +37,14 @@ if [[ $@ == *"dist-macos"* ]]; then
     java -jar bundler.jar bundle \
         --arch aarch64 --os macos \
         --id $APP_ID --name $APP_NAME --icon icon.png \
-        --java 11 --arg="-XstartOnFirstThread $VM_OPTIONS" --main $MAIN_CLASS \
+        --java 11 --arg=-XstartOnFirstThread $VM_OPTIONS --main $MAIN_CLASS \
         --dependency "app/core/target/Caffeinated.jar" \
         --dependency "https://jitpack.io|com.github.saucer.saucer4j:webkit:$SAUCER4J_VERSION:.jar"
 
     java -jar bundler.jar bundle \
         --arch x86_64 --os macos \
         --id $APP_ID --name $APP_NAME --icon icon.png \
-        --java 11 --arg="-XstartOnFirstThread $VM_OPTIONS" --main $MAIN_CLASS \
+        --java 11 --arg=-XstartOnFirstThread $VM_OPTIONS --main $MAIN_CLASS \
         --dependency "app/core/target/Caffeinated.jar" \
         --dependency "https://jitpack.io|com.github.saucer.saucer4j:webkit:$SAUCER4J_VERSION:.jar"
 
@@ -57,21 +57,21 @@ if [[ $@ == *"dist-linux"* ]]; then
     java -jar bundler.jar bundle \
         --arch aarch64 --os gnulinux \
         --id $APP_ID --name $APP_NAME --icon icon.png \
-        --java 11 --arg="$VM_OPTIONS" --main $MAIN_CLASS \
+        --java 11 $VM_OPTIONS --main $MAIN_CLASS \
         --dependency "app/core/target/Caffeinated.jar" \
         --dependency "https://jitpack.io|com.github.saucer.saucer4j:webkitgtk:$SAUCER4J_VERSION:.jar"
 
     java -jar bundler.jar bundle \
         --arch arm --os gnulinux \
         --id $APP_ID --name $APP_NAME --icon icon.png \
-        --java 11 --arg="$VM_OPTIONS" --main $MAIN_CLASS \
+        --java 11 $VM_OPTIONS --main $MAIN_CLASS \
         --dependency "app/core/target/Caffeinated.jar" \
         --dependency "https://jitpack.io|com.github.saucer.saucer4j:webkitgtk:$SAUCER4J_VERSION:.jar"
 
     java -jar bundler.jar bundle \
         --arch x86_64 --os gnulinux \
         --id $APP_ID --name $APP_NAME --icon icon.png \
-        --java 11 --arg="$VM_OPTIONS" --main $MAIN_CLASS \
+        --java 11 $VM_OPTIONS --main $MAIN_CLASS \
         --dependency "app/core/target/Caffeinated.jar" \
         --dependency "https://jitpack.io|com.github.saucer.saucer4j:webkitgtk:$SAUCER4J_VERSION:.jar"
 
