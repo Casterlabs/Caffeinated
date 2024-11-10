@@ -404,7 +404,7 @@ public class CaffeinatedApp implements Caffeinated {
     }
 
     @JavascriptSetter("koiUrl")
-    public void setUseBetaKoiPath(String val) {
+    public void setKoiUrl(String val) {
         this.appPreferences.get().setKoiUrl(val);
         this.appPreferences.save();
     }
