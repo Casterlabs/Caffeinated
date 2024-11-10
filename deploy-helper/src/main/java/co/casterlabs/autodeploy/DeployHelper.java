@@ -70,13 +70,13 @@ public class DeployHelper {
             Promise<Void> promise = new Promise<>(() -> {
                 File artifactFile = new File(artifact);
 
-                logger.info("Uploading build artifact: %s to /dist/%s/%s (%d bytes)", artifactFile, branch, artifact, artifactFile.length());
+                logger.info("Uploading build artifact: %s to /caffeinated/dist/%s/%s (%d bytes)", artifactFile, branch, artifact, artifactFile.length());
 
                 b2.uploadSmallFile(
                     B2UploadFileRequest
                         .builder(
                             bucketId,
-                            String.format("dist/%s/%s", branch, artifact),
+                            String.format("caffeinated/dist/%s/%s", branch, artifact),
                             B2ContentTypes.APPLICATION_OCTET,
                             B2FileContentSource.build(artifactFile)
                         )
@@ -94,13 +94,13 @@ public class DeployHelper {
                 Promise<Void> promise = new Promise<>(() -> {
                     File artifactFile = new File(artifact);
 
-                    logger.info("Uploading build artifact: %s to /dist/beta/%s (%d bytes)", artifactFile, artifact, artifactFile.length());
+                    logger.info("Uploading build artifact: %s to /caffeinated/dist/beta/%s (%d bytes)", artifactFile, artifact, artifactFile.length());
 
                     b2.uploadSmallFile(
                         B2UploadFileRequest
                             .builder(
                                 bucketId,
-                                String.format("dist/beta/%s", artifact),
+                                String.format("caffeinated/dist/beta/%s", artifact),
                                 B2ContentTypes.APPLICATION_OCTET,
                                 B2FileContentSource.build(artifactFile)
                             )
@@ -142,7 +142,7 @@ public class DeployHelper {
                 B2UploadFileRequest
                     .builder(
                         bucketId,
-                        String.format("dist/%s/commit", branch),
+                        String.format("caffeinated/dist/%s/commit", branch),
                         B2ContentTypes.TEXT_PLAIN, B2ByteArrayContentSource.build(commitShortHash.getBytes())
                     )
                     .build()
@@ -154,7 +154,7 @@ public class DeployHelper {
                     B2UploadFileRequest
                         .builder(
                             bucketId,
-                            "dist/beta/commit",
+                            "caffeinated/dist/beta/commit",
                             B2ContentTypes.TEXT_PLAIN, B2ByteArrayContentSource.build(commitShortHash.getBytes())
                         )
                         .build()
