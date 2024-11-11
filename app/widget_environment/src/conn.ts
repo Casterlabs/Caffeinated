@@ -76,7 +76,7 @@ export default class Conn extends EventHandler {
 
                     case "UPDATE":
                         {
-                            this.broadcast("update");
+                            this.broadcast("update", payload.data);
                             return;
                         }
 
