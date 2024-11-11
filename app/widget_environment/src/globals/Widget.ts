@@ -59,9 +59,12 @@ export function init(c: Conn) {
 
     conn.on("init", ({ widget }) => {
         widgetData = widget;
+        events.broadcast("init");
+        events.broadcast("update");
     });
     conn.on("update", ({ widget }) => {
         widgetData = widget;
+        events.broadcast("update");
     });
     conn.on("emission", ({ type, data }) => {
         events.broadcast(type, data);
