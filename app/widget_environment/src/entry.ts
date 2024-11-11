@@ -45,7 +45,7 @@ conn.on("close", () => {
 });
 
 conn.on("init", () => {
-    conn.send("READY", {});
+    setTimeout(() => conn.send("READY", {}), 100);
 });
 
 conn.connect();
