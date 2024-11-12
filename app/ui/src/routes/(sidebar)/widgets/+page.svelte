@@ -85,7 +85,7 @@
 					name: creatable.friendlyName,
 					requiredFeatures: creatable.requiredFeatures,
 					create: async () => {
-						Caffeinated.pluginIntegration.createNewWidget(
+						return await Caffeinated.pluginIntegration.createNewWidget(
 							creatable.namespace,
 							`${await t(creatable.friendlyName)} ${await t(
 								'co.casterlabs.caffeinated.app.page.widgets.create.new'
@@ -225,8 +225,8 @@
 								icon: 'icon/trash',
 								text: 'co.casterlabs.caffeinated.app.page.widgets.delete',
 								color: 'error',
-								onclick() {
-									window.Caffeinated.pluginIntegration.deleteWidget(widget.id);
+								async onclick() {
+									await window.Caffeinated.pluginIntegration.deleteWidget(widget.id);
 									refreshWidgetsList();
 								}
 							}
@@ -316,9 +316,10 @@
 											.filter((f) => !supportedFeatures.includes(f)).length == 0}
 									<button
 										class="block w-full h-10"
-										on:click={() => {
+										on:click={async () => {
 											if (isSupported) {
-												widget.create();
+												let id = await widget.create();
+												goto(`/$caffeinated-sdk-root$/widgets/edit?id=${id}`);
 											} else {
 												showCreationWarningFeaturesModalFor = widget;
 											}
