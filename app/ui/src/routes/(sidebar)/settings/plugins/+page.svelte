@@ -54,8 +54,9 @@
 						<div class="flex-0">
 							{#if context.file}
 								<SlimButton
-									on:click={() => {
-										window.Caffeinated.pluginIntegration.unload(context.id);
+									on:click={async () => {
+										await window.Caffeinated.pluginIntegration.unload(context.id);
+										location.reload();
 									}}
 								>
 									<LocalizedText
@@ -79,8 +80,9 @@
 					</p>
 					<div class="flex-0">
 						<SlimButton
-							on:click={() => {
-								window.Caffeinated.pluginIntegration.load(file);
+							on:click={async () => {
+								await window.Caffeinated.pluginIntegration.load(file);
+								location.reload();
 							}}
 						>
 							<LocalizedText key="co.casterlabs.caffeinated.app.page.settings.plugins.file.load" />
