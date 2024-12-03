@@ -26,13 +26,13 @@
 		artist = Music.activePlayback.currentTrack.artists.join(', ');
 		albumArtUrl = Music.activePlayback.currentTrack.albumArtUrl;
 
-		if (cardStyle == 'Text Only') {
+		if ($settings['style.card_style'] == 'Text Only') {
 			changeFont(textOnly_font);
 		} else {
 			changeFont('Poppins');
 		}
 
-		if (backgroundStyle == 'Solid') {
+		if ($settings['style.background_style'] == 'Solid') {
 			getAverageColor(Music.activePlayback.currentTrack.albumArtUrl).then(([r, g, b]) => {
 				cardColor = `rgb(${r}, ${g}, ${b})`;
 			});
