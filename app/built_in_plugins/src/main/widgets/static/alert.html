@@ -172,10 +172,10 @@
 								alertVideo.src = image;
 								alertVideo.play();
 								alertVideo.classList = '';
-								videoPromise = new Promise((resolve) => {
-									alertVideo.addEventListener('ended', resolve);
-									alertVideo.addEventListener('error', resolve);
-								});
+								// videoPromise = new Promise((resolve) => {
+								//  	alertVideo.addEventListener('ended', resolve);
+								//  	alertVideo.addEventListener('error', resolve);
+								// });
 								// alertVideo.addEventListener("loadeddata", () => {
 								//     const duration = alertVideo.duration * 1000;
 								//     displayTime += (duration - DISPLAY_TIME);
