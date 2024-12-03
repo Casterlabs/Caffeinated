@@ -10,7 +10,7 @@
 	onMount(() => {
 		Widget.on('update', () => {
 			settings.set(Widget.widgetData.settings);
-			changeFont(Widget.getSetting('text_style.font'));
+			changeFont($settings['text_style.font']);
 		});
 
 		Widget.on('html', ({ html: h }) => {

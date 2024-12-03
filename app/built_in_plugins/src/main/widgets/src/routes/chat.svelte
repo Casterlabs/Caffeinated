@@ -97,7 +97,7 @@
 				});
 				li.setAttribute('event-platform', event.streamer.platform);
 
-				if (!Widget.getSetting('platform.platforms').includes(event.streamer.platform)) {
+				if (!$settings['platform.platforms'].includes(event.streamer.platform)) {
 					li.style.display = 'none';
 				}
 
@@ -226,9 +226,9 @@
 
 		Widget.on('update', () => {
 			settings.set(Widget.widgetData.settings);
-			changeFont(Widget.getSetting('text_style.font'));
+			changeFont($settings['text_style.font']);
 
-			const platforms = Widget.getSetting('platform.platforms');
+			const platforms = $settings['platform.platforms'];
 			for (const li of document.querySelectorAll('#chatbox>li')) {
 				if (platforms.includes(li.getAttribute('event-platform'))) {
 					li.style.display = 'unset';

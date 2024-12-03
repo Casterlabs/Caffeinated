@@ -25,8 +25,8 @@
 
 		const delta = streamdata ? new Date() - new Date(streamdata.start_time) : 0;
 
-		const prefix = Widget.getSetting('text.prefix');
-		const suffix = Widget.getSetting('text.suffix');
+		const prefix = $settings['text.prefix'];
+		const suffix = $settings['text.suffix'];
 
 		let text = new Date(delta).toISOString().substring(11, 11 + 8);
 
@@ -46,7 +46,7 @@
 
 		Widget.on('update', () => {
 			settings.set(Widget.widgetData.settings);
-			changeFont(Widget.getSetting('text_style.font'));
+			changeFont($settings['text_style.font']);
 		});
 
 		Widget.on('init', () => Widget.broadcast('update'));
