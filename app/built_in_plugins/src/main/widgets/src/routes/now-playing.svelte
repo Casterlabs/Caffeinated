@@ -27,7 +27,7 @@
 		albumArtUrl = Music.activePlayback.currentTrack.albumArtUrl;
 
 		if ($settings['style.card_style'] == 'Text Only') {
-			changeFont(textOnly_font);
+			changeFont($settings['style.font']);
 		} else {
 			changeFont('Poppins');
 		}
