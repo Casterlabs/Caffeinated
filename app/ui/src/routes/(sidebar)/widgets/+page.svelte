@@ -46,7 +46,7 @@
 
 	async function refreshWidgetsList() {
 		contextMenuMap = {};
-		widgetsByTag = {
+		let wbt = {
 			[null]: [],
 			red: [],
 			green: [],
@@ -57,10 +57,10 @@
 			.filter((w) => w.details.type == 'WIDGET');
 
 		for (const widget of widgets) {
-			widgetsByTag[widget.tag].push(widget);
+			wbt[widget.tag].push(widget);
 		}
 
-		widgetsByTag = widgetsByTag;
+		widgetsByTag = wbt;
 	}
 
 	onMount(async () => {
