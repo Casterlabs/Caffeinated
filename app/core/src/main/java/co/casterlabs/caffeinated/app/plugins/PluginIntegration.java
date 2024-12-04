@@ -64,9 +64,9 @@ public class PluginIntegration {
     // Pointers to forward values from PluginsHandler.
     @JavascriptValue(allowSet = false, watchForMutate = true)
     private final Collection<CaffeinatedPlugin> loadedPlugins = this.plugins.plugins.values();
-    @JavascriptValue(allowSet = false, watchForMutate = true)
+    @JavascriptValue(allowSet = false)
     private final Collection<WidgetDetails> creatableWidgets = this.plugins.creatableWidgets;
-    @JavascriptValue(allowSet = false, watchForMutate = true)
+    @JavascriptValue(allowSet = false)
     private final Collection<WidgetHandle> widgets = this.plugins.widgetHandles.values();
 
     public PluginIntegration() {
