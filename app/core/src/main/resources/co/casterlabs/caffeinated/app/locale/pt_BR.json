@@ -8,7 +8,7 @@
     "page.signin.disclaimer.privacy_policy": "Política de Privacidade",
     "page.widgets.info.widget_features_not_supported.modal.title": "Widget não suportado",
     "page.chat_bot.commands.examples.shoutout.code": "if (args.length == 0) {\n    Koi.sendChat(event.streamer.platform, `Você deve especificar um streamer para gritar!`, \"SYSTEM\", evento. d);\n} else {\n    Koi.sendChat(event.streamer.platform, `Todos vão verificar @${args[0]}!`, \"SYSTEM\", null);\n}",
-    "page.chat_bot.commands.examples.tts.code": "Som.playTTS(rawArgs, \"Brian\", .5 /* volume, 0-1 */);",
+    "page.chat_bot.commands.examples.tts.code": "Som.playTTS(rawArgs, \"Polly Brian\", .5 /* volume, 0-1 */);",
     "page.chat_bot.timers.next.seconds": "Próxima mensagem em: {seconds} segundos.",
     "page.settings.appearance.close_to_tray.description": "Torna o caffeinated confortável em segundo plano ao fechá-lo.",
     "page.settings.about": "Sobre",
