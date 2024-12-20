@@ -42,6 +42,10 @@ public class TrayHandler {
             throw new IllegalStateException("Tray handler is already initialized.");
         }
 
+        if (System.getProperty("caffeinated.tray.enabled", "true").equalsIgnoreCase("false")) {
+            return false;
+        }
+
         if ((Platform.osDistribution != OSDistribution.WINDOWS_NT) || !SystemTray.isSupported()) {
             // Note that calling SystemTray will cause an AWT thread lock on macOS. So we
             // always need to be diligent and check for platform for compat.
@@ -79,6 +83,7 @@ public class TrayHandler {
             } else {
                 CaffeinatedApp.getInstance().getUI().navigate("/");
                 Bootstrap.getSaucer().window().show();
+                Bootstrap.getSaucer().window().focus();
                 updateShowCheckbox(true);
             }
         });
