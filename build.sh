@@ -25,6 +25,7 @@ if [[ $@ == *"dist-windows"* ]]; then
         --arch x86_64 --os windows \
         --id $APP_ID --name $APP_NAME --icon icon.png \
         --java 11 $VM_OPTIONS --main $MAIN_CLASS \
+        --sign 'cmd.exe /C C:\signing\sign.bat Casterlabs-Caffeinated.exe' \
         --file app/core/WMC-JsonConsoleWrapper.exe --dependency "app/core/target/Caffeinated.jar" \
         --dependency "https://jitpack.io|com.github.saucer.saucer4j:webview2:$SAUCER4J_VERSION:.jar"
 

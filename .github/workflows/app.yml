@@ -37,7 +37,7 @@ jobs:
   bundle_windows:
     needs: [build_app]
     if: startsWith(github.ref, 'refs/tags/1.2-')
-    runs-on: windows-latest
+    runs-on: [self-hosted, Windows, x64, code-sign]
     steps:
       - name: 📩 Grab the code
         uses: actions/checkout@v3
